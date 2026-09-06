@@ -1,12 +1,13 @@
-# Karvan-e-Asal — A1.0.41
+# Karvan e Asal — A1.0.49
 
-Production audit checkpoint.
+Controlled UI/navigation cleanup checkpoint built from A1.0.45.
 
-This checkpoint hardens synchronization failure recovery and partial-sync integrity. Sync-queue flushing is serialized so overlapping flushes cannot race, and queue writes merge against work queued while an earlier network operation is still in flight. Successfully synchronized items are removed while failed items remain queued; newly queued work is never lost.
+Changes:
+- Removed the mobile quick-navigation bar.
+- Added a mobile off-canvas navigation drawer from the header menu button.
+- Preserved desktop navigation and all audited data/security/financial/sync logic.
+- Improved theme-aware text for headings, cards, totals and modal titles.
+- Preserved the V2.0.1 FX migration compatibility key only as a data migration bridge; it is not a visible UI layer.
 
-No Supabase schema, RLS, policy, or database function changes are required for this checkpoint.
-
-A1.0.40: Final full-system regression, integrity, packaging and deployment-readiness audit. Consolidates synchronization, authentication, permissions, financial integrity, catalogue safeguards, deletion/recovery protection and PWA cache hardening. No Supabase schema/RLS changes.
-
-
-A1.0.41: Connected the production frontend to the supplied Supabase project using the public publishable client key. The REST endpoint suffix is intentionally not used; the app uses the project root URL. No schema/RLS changes.
+Supabase configuration is unchanged.
+Do not add supabase.js.

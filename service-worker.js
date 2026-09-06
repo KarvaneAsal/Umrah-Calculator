@@ -1,4 +1,4 @@
-const CACHE_NAME = 'karvan-e-asal-final-audited-v14';
+const CACHE_NAME = 'karvan-e-asal-final-audited-v16';
 const APP_SHELL = [
   './',
   './index.html',

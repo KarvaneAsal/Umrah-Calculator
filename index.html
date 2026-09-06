@@ -1,4 +1,4 @@
-<!-- Step Z Parts 5-6: production test helpers removed; redundant Step 6 runtime removed; saveVisa and Records/saveFx overrides consolidated. -->
+<!-- Karvan e Asal current production UI/runtime. -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -12,19 +12,19 @@
 <style>
 :root{--color-navy:#0B1F3A;--color-gold:#C9962D;--color-gold-light:#E6B84F;--color-red:#D92D20;--color-white:#FFFFFF;--color-black:#101828;--shadow-sm:color-mix(in srgb,var(--color-black) 6%,transparent);--shadow-md:color-mix(in srgb,var(--color-black) 8%,transparent);--shadow-lg:color-mix(in srgb,var(--color-black) 14%,transparent);--overlay-dark:color-mix(in srgb,var(--color-black) 44%,transparent);--overlay-dark-soft:color-mix(in srgb,var(--color-black) 27%,transparent);--white-08:color-mix(in srgb,var(--color-white) 8%,transparent);--white-12:color-mix(in srgb,var(--color-white) 12%,transparent);--white-28:color-mix(in srgb,var(--color-white) 28%,transparent);--white-35:color-mix(in srgb,var(--color-white) 35%,transparent);--gold-18:color-mix(in srgb,var(--color-gold) 18%,transparent);--gold-22:color-mix(in srgb,var(--color-gold-light) 22%,transparent);--gold-28:color-mix(in srgb,var(--color-gold) 28%,transparent);--gold-82:color-mix(in srgb,var(--color-gold) 82%,transparent);}
 [data-theme="day"]{--bg:#F4F6FA;--surface:#FFFFFF;--surface-2:#F7F8FA;--border:#DFE4EC;--text-primary:var(--color-black);--text-muted:#667085;--text-on-navy:var(--color-white);--text-on-gold:var(--color-black);--danger:#D92D20;}
-[data-theme="night"]{--bg:#0B1424;--surface:#101B2E;--surface-2:#16233A;--border:rgba(255,255,255,.12);--text-primary:var(--color-white);--text-muted:rgba(255,255,255,.65);--text-on-navy:var(--color-white);--text-on-gold:var(--color-black);--danger:#FF6B5E;}
+[data-theme="night"]{--bg:#07111F;--surface:#0F1B2D;--surface-2:#162840;--border:rgba(255,255,255,.14);--text-primary:var(--color-white);--text-muted:rgba(255,255,255,.65);--text-on-navy:var(--color-white);--text-on-gold:var(--color-black);--danger:#FF6B5E;}
 
-*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text-primary)}button,input,select{font:inherit}button{cursor:pointer}.app{min-height:100vh}.topbar{height:64px;background:var(--color-navy);color:var(--text-on-navy);display:flex;align-items:center;padding:0 14px;gap:10px;position:fixed;top:0;left:0;right:0;z-index:100;box-shadow:0 4px 18px var(--shadow-lg);border-bottom:1px solid var(--gold-22)}.topbar img{height:54px;width:54px;object-fit:contain}.topbar .title{font-weight:900;letter-spacing:.4px;color:var(--text-on-navy)}.topbar .sub{font-size:9px;opacity:.72;margin-top:2px;color:var(--text-on-navy)}.user-chip{margin-left:auto;display:flex;align-items:center;gap:8px;min-width:0}.user-role{font-size:9px;opacity:.75}.logout{border:1px solid var(--white-35);background:var(--white-08);color:var(--text-on-navy);border-radius:8px;padding:7px 10px;font-weight:800;font-size:10px}.layout{display:flex;max-width:1400px;margin:auto;padding-top:64px}.sidebar{width:220px;background:var(--color-navy);color:var(--text-on-navy);min-height:calc(100vh - 64px);padding:15px 10px;position:sticky;top:64px;align-self:flex-start}.navicon{width:22px;min-width:22px;text-align:center;font-size:17px;line-height:1}.navitem{display:flex;gap:10px;align-items:center;padding:11px 12px;border-radius:10px;margin:3px 0;color:var(--text-muted);border:0;background:none;width:100%;text-align:left;font-size:12px;font-weight:800}.navitem.active,.navitem:hover{background:var(--color-gold);color:var(--text-on-gold)}.content{flex:1;padding:18px;min-width:0}.page{display:none;position:relative;overflow:hidden}.page.active{display:block}.page>*{position:relative;z-index:1}.pageBrand{display:flex;align-items:center;gap:11px;padding:10px 13px;margin:0 0 12px;border:1px solid color-mix(in srgb,var(--color-gold) 35%,var(--border));border-radius:14px;background:linear-gradient(90deg,var(--surface) 0%,var(--surface-2) 55%,var(--surface-2) 100%);box-shadow:0 6px 20px var(--shadow-sm)}.pageBrand img{width:48px;height:48px;object-fit:contain;display:block}.pageBrand .brandMain{font-size:14px;font-weight:950;letter-spacing:.8px;color:var(--color-navy)}.pageBrand .brandSub{font-size:9px;font-weight:800;color:var(--color-gold);letter-spacing:.7px;margin-top:2px}.pageBrand .brandLine{margin-left:auto;height:32px;width:4px;border-radius:9px;background:linear-gradient(180deg,var(--color-gold-light),var(--color-navy))}.pagehead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.pagehead h1{margin:0;color:var(--color-navy);font-size:23px}.pagehead p{margin:4px 0 0;color:var(--text-muted);font-size:11px}.card{background:var(--surface);border:1px solid var(--border);border-radius:15px;box-shadow:0 8px 26px var(--shadow-sm);padding:15px;margin-bottom:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field label{display:block;font-size:10px;font-weight:900;color:var(--text-muted);margin:0 0 5px}.field input,.field select{width:100%;border:1px solid var(--border);border-radius:9px;padding:10px 11px;background:var(--surface);min-height:40px;outline:none}.field input:focus,.field select:focus{border-color:var(--color-gold);box-shadow:0 0 0 3px var(--color-gold)18}.btn{border:1px solid transparent;border-radius:9px;padding:10px 13px;font-size:11px;font-weight:900}.primary{background:var(--color-navy);color:var(--text-on-navy)}.gold{background:linear-gradient(135deg,var(--color-gold),var(--color-gold-light));color:var(--text-on-gold)}.outline{background:var(--surface);border-color:var(--border);color:var(--color-navy)}.danger{background:var(--surface);border-color:var(--danger);color:var(--danger)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:13px}.metric .k{font-size:10px;color:var(--text-muted)}.metric .v{font-size:20px;font-weight:900;color:var(--color-navy);margin-top:5px}.steps{display:flex;gap:6px;overflow:auto;margin-bottom:12px;position:relative;z-index:20;pointer-events:auto}.steps .step{position:relative;z-index:21;pointer-events:auto}.step{flex:0 0 auto;white-space:nowrap;border:1px solid var(--border);background:var(--surface);border-radius:99px;padding:8px 11px;font-size:10px;font-weight:900;color:var(--text-muted)}.step.active{background:var(--color-navy);color:var(--text-on-navy);border-color:var(--color-navy)}.section-title{font-size:14px;font-weight:900;color:var(--color-navy);margin:0 0 9px}.muted{font-size:10px;color:var(--text-muted)}.paxgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.pax{border:1px solid var(--border);border-radius:12px;padding:11px}.pax b{display:block;color:var(--color-navy);font-size:12px}.counter{display:flex;gap:6px;align-items:center;margin-top:9px}.counter button{width:35px;height:35px;border:0;border-radius:8px;background:var(--surface-2);color:var(--color-navy);font-weight:900}.counter input{flex:1;text-align:center;border:1px solid var(--border);border-radius:8px;height:35px}.stay,.flight,.service{border:1px solid var(--border);border-radius:12px;padding:11px;margin-top:9px}.stayhead{display:flex;justify-content:space-between;align-items:center}.badge{font-size:9px;font-weight:900;background:var(--surface-2);color:var(--color-navy);border-radius:99px;padding:5px 8px}.rate{font-size:10px;color:var(--text-muted);margin-top:7px}.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:10px}.table th,.table td{padding:9px 7px;border-bottom:1px solid var(--border);white-space:nowrap;text-align:left}.table th{background:var(--surface-2);color:var(--text-muted);font-weight:900}.table td strong{color:var(--color-navy)}.hotel-provider-cell{text-align:left!important;vertical-align:middle!important}.hotel-provider-cell>*{margin-left:0!important;margin-right:0!important;text-align:left!important}.hotel-provider-cell .hotel-provider-badge{display:inline-flex!important;align-items:center;justify-content:flex-start;text-align:left;min-width:54px;margin:4px 0 0!important;line-height:1.1}.tabs{display:flex;gap:6px;overflow:auto;margin-bottom:10px}.tabs button{white-space:nowrap}.tabs .on{background:var(--color-navy);color:var(--text-on-navy)}.totalbox{background:linear-gradient(135deg,var(--surface-2),var(--surface-2));border:1px solid color-mix(in srgb,var(--color-gold) 45%,var(--border));border-radius:13px;padding:12px}.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:11px}.row:last-child{border-bottom:0}.row b{color:var(--color-navy)}.grand{font-size:16px;font-weight:900}.invoice{background:var(--surface);border:1px solid color-mix(in srgb,var(--color-gold) 55%,var(--border));padding:18px;position:relative;overflow:hidden}.invoice>*{position:relative;z-index:1}.invoiceLogo{width:72px;height:72px;object-fit:contain;display:block;margin-bottom:6px}.invoiceBrand{display:flex;align-items:flex-start;gap:12px}.invoicehead{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px;border-bottom:2px solid var(--color-navy);padding-bottom:12px}.invoice h2{margin:0;color:var(--color-navy);font-size:19px}.invoice h3{color:var(--color-navy);font-size:12px;margin:14px 0 6px}.mobileNav{display:none;grid-template-columns:repeat(6,minmax(0,1fr));background:var(--color-navy)!important;border-top:1px solid var(--gold-22)}.notice{background:var(--surface-2);border:1px solid color-mix(in srgb,var(--color-gold) 55%,var(--border));border-radius:10px;padding:10px;font-size:10px;color:var(--text-primary)}.modal{position:fixed;inset:0;background:var(--overlay-dark);display:none;align-items:center;justify-content:center;z-index:100;padding:12px;overflow:hidden;-webkit-overflow-scrolling:touch}.modal.open{display:flex}.modalbox{background:var(--surface);border-radius:15px;width:min(620px,100%);max-height:calc(100dvh - 24px);overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:16px;box-shadow:0 20px 60px var(--overlay-dark-soft);box-sizing:border-box}.modalbox .grid,.modalbox .grid2{min-width:0}.modalbox input,.modalbox select,.modalbox button{max-width:100%;box-sizing:border-box}@media(max-width:600px){.modal{align-items:flex-start;padding:8px}.modalbox{width:100%;max-height:calc(100dvh - 16px);border-radius:12px;padding:13px}.modalbox .grid,.modalbox .grid2{grid-template-columns:1fr;gap:9px}.modalbox [style*="grid-column:span 2"]{grid-column:auto!important}.modalbox .modalhead{position:sticky;top:-13px;background:var(--surface);z-index:5;padding:4px 0 9px;border-bottom:1px solid var(--border);margin-bottom:8px}.modalbox .modalhead button{flex:0 0 auto}}.hotel-modal-actions-top{display:flex;justify-content:flex-end;gap:8px;margin:10px 0 12px;padding:0 0 10px;border-bottom:1px solid var(--border)}.hotel-provider-notice,.hotel-provider-help,.hotel-provider-explanation{display:none!important}.
-.modalhead{display:flex;justify-content:space-between;align-items:center}.modalhead h3{margin:0;color:var(--color-navy)}.modal-actions{position:sticky;bottom:-16px;z-index:6;display:flex;justify-content:flex-end;gap:8px;margin:16px -16px -16px;padding:12px 16px;background:var(--surface);border-top:1px solid var(--border);box-shadow:0 -8px 18px var(--shadow-sm)}@media(max-width:600px){.modal-actions{bottom:-13px;margin:14px -13px -13px;padding:10px 13px}.modal-actions .btn{min-height:42px}}
-.choicegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.choicecard{border:1px solid color-mix(in srgb,var(--color-gold) 30%,var(--border));border-radius:16px;background:linear-gradient(145deg,var(--surface),var(--surface-2));padding:20px;box-shadow:0 8px 26px var(--shadow-sm);cursor:pointer;transition:.18s}.choicecard:hover{transform:translateY(-2px);box-shadow:0 12px 30px var(--shadow-md);border-color:var(--color-gold)}.choiceicon{width:44px;height:44px;border-radius:12px;background:var(--color-navy);color:var(--text-on-navy);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px}.choicecard h3{margin:0;color:var(--color-navy);font-size:15px}.choicecard p{font-size:10px;color:var(--text-muted);line-height:1.5}.pcresult{border:1px solid color-mix(in srgb,var(--color-gold) 45%,var(--border));border-radius:14px;background:linear-gradient(135deg,var(--surface-2),var(--surface-2));padding:13px}.pcrow{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:11px}.pcrow:last-child{border-bottom:0}.pcgrand{font-size:17px;font-weight:950;color:var(--color-navy)}.mini-note{font-size:9px;color:var(--text-muted)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text-primary)}button,input,select{font:inherit}button{cursor:pointer}.app{min-height:100vh}.topbar{height:64px;background:var(--color-navy);color:var(--text-on-navy);display:flex;align-items:center;padding:0 14px;gap:10px;position:fixed;top:0;left:0;right:0;z-index:100;box-shadow:0 4px 18px var(--shadow-lg);border-bottom:1px solid var(--gold-22)}.topbar img{height:54px;width:54px;object-fit:contain}.topbar .title{font-weight:900;letter-spacing:.4px;color:var(--text-on-navy)}.topbar .sub{font-size:9px;opacity:.72;margin-top:2px;color:var(--text-on-navy)}.user-chip{margin-left:auto;display:flex;align-items:center;gap:8px;min-width:0}.user-role{font-size:9px;opacity:.75}.logout{border:1px solid var(--white-35);background:var(--white-08);color:var(--text-on-navy);border-radius:8px;padding:7px 10px;font-weight:800;font-size:10px}.layout{display:flex;max-width:1400px;margin:auto;padding-top:64px}.sidebar{width:220px;background:var(--color-navy);color:var(--text-on-navy);min-height:calc(100vh - 64px);padding:15px 10px;position:sticky;top:64px;align-self:flex-start}.navicon{width:22px;min-width:22px;text-align:center;font-size:17px;line-height:1}.navitem{display:flex;gap:10px;align-items:center;padding:11px 12px;border-radius:10px;margin:3px 0;color:var(--text-muted);border:0;background:none;width:100%;text-align:left;font-size:12px;font-weight:800}.navitem.active,.navitem:hover{background:var(--color-gold);color:var(--text-on-gold)}.content{flex:1;padding:18px;min-width:0}.page{display:none;position:relative;overflow:hidden}.page.active{display:block}.page>*{position:relative;z-index:1}.pageBrand{display:flex;align-items:center;gap:11px;padding:10px 13px;margin:0 0 12px;border:1px solid color-mix(in srgb,var(--color-gold) 35%,var(--border));border-radius:14px;background:linear-gradient(90deg,var(--surface) 0%,var(--surface-2) 55%,var(--surface-2) 100%);box-shadow:0 6px 20px var(--shadow-sm)}.pageBrand img{width:48px;height:48px;object-fit:contain;display:block}.pageBrand .brandMain{font-size:14px;font-weight:950;letter-spacing:.8px;color:var(--color-navy)}.pageBrand .brandSub{font-size:9px;font-weight:800;color:var(--color-gold);letter-spacing:.7px;margin-top:2px}.pageBrand .brandLine{margin-left:auto;height:32px;width:4px;border-radius:9px;background:linear-gradient(180deg,var(--color-gold-light),var(--color-navy))}.pagehead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.pagehead h1{margin:0;color:var(--text-primary);font-size:23px}.pagehead p{margin:4px 0 0;color:var(--text-muted);font-size:11px}.card{background:var(--surface);border:1px solid var(--border);border-radius:15px;box-shadow:0 8px 26px var(--shadow-sm);padding:15px;margin-bottom:13px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field label{display:block;font-size:10px;font-weight:900;color:var(--text-muted);margin:0 0 5px}.field input,.field select{width:100%;border:1px solid var(--border);border-radius:9px;padding:10px 11px;background:var(--surface);min-height:40px;outline:none}.field input:focus,.field select:focus{border-color:var(--color-gold);box-shadow:0 0 0 3px var(--color-gold)18}.btn{border:1px solid transparent;border-radius:9px;padding:10px 13px;font-size:11px;font-weight:900}.primary{background:var(--color-navy);color:var(--text-on-navy)}.gold{background:linear-gradient(135deg,var(--color-gold),var(--color-gold-light));color:var(--text-on-gold)}.outline{background:var(--surface);border-color:var(--border);color:var(--color-navy)}.danger{background:var(--surface);border-color:var(--danger);color:var(--danger)}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.metric{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:13px}.metric .k{font-size:10px;color:var(--text-muted)}.metric .v{font-size:20px;font-weight:900;color:var(--text-primary);margin-top:5px}.steps{display:flex;gap:6px;overflow:auto;margin-bottom:12px;position:relative;z-index:20;pointer-events:auto}.steps .step{position:relative;z-index:21;pointer-events:auto}.step{flex:0 0 auto;white-space:nowrap;border:1px solid var(--border);background:var(--surface);border-radius:99px;padding:8px 11px;font-size:10px;font-weight:900;color:var(--text-muted)}.step.active{background:var(--color-navy);color:var(--text-on-navy);border-color:var(--color-navy)}.section-title{font-size:14px;font-weight:900;color:var(--text-primary);margin:0 0 9px}.muted{font-size:10px;color:var(--text-muted)}.paxgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.pax{border:1px solid var(--border);border-radius:12px;padding:11px}.pax b{display:block;color:var(--color-navy);font-size:12px}.counter{display:flex;gap:6px;align-items:center;margin-top:9px}.counter button{width:35px;height:35px;border:0;border-radius:8px;background:var(--surface-2);color:var(--color-navy);font-weight:900}.counter input{flex:1;text-align:center;border:1px solid var(--border);border-radius:8px;height:35px}.stay,.flight,.service{border:1px solid var(--border);border-radius:12px;padding:11px;margin-top:9px}.stayhead{display:flex;justify-content:space-between;align-items:center}.badge{font-size:9px;font-weight:900;background:var(--surface-2);color:var(--color-navy);border-radius:99px;padding:5px 8px}.rate{font-size:10px;color:var(--text-muted);margin-top:7px}.tablewrap{overflow:auto}.table{width:100%;border-collapse:collapse;font-size:10px}.table th,.table td{padding:9px 7px;border-bottom:1px solid var(--border);white-space:nowrap;text-align:left}.table th{background:var(--surface-2);color:var(--text-muted);font-weight:900}.table td strong{color:var(--color-navy)}.hotel-provider-cell{text-align:left!important;vertical-align:middle!important}.hotel-provider-cell>*{margin-left:0!important;margin-right:0!important;text-align:left!important}.hotel-provider-cell .hotel-provider-badge{display:inline-flex!important;align-items:center;justify-content:flex-start;text-align:left;min-width:54px;margin:4px 0 0!important;line-height:1.1}.tabs{display:flex;gap:6px;overflow:auto;margin-bottom:10px}.tabs button{white-space:nowrap}.tabs .on{background:var(--color-navy);color:var(--text-on-navy)}.totalbox{background:linear-gradient(135deg,var(--surface-2),var(--surface-2));border:1px solid color-mix(in srgb,var(--color-gold) 45%,var(--border));border-radius:13px;padding:12px}.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--border);font-size:11px}.row:last-child{border-bottom:0}.row b{color:var(--text-primary)}.grand{font-size:16px;font-weight:900}.invoice{background:var(--surface);border:1px solid color-mix(in srgb,var(--color-gold) 55%,var(--border));padding:18px;position:relative;overflow:hidden}.invoice>*{position:relative;z-index:1}.invoiceLogo{width:72px;height:72px;object-fit:contain;display:block;margin-bottom:6px}.invoiceBrand{display:flex;align-items:flex-start;gap:12px}.invoicehead{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:12px;border-bottom:2px solid var(--color-navy);padding-bottom:12px}.invoice h2{margin:0;color:var(--color-navy);font-size:19px}.invoice h3{color:var(--color-navy);font-size:12px;margin:14px 0 6px}.notice{background:var(--surface-2);border:1px solid color-mix(in srgb,var(--color-gold) 55%,var(--border));border-radius:10px;padding:10px;font-size:10px;color:var(--text-primary)}.modal{position:fixed;inset:0;background:var(--overlay-dark);display:none;align-items:center;justify-content:center;z-index:100;padding:12px;overflow:hidden;-webkit-overflow-scrolling:touch}.modal.open{display:flex}.modalbox{background:var(--surface);border-radius:15px;width:min(620px,100%);max-height:calc(100dvh - 24px);overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:16px;box-shadow:0 20px 60px var(--overlay-dark-soft);box-sizing:border-box}.modalbox .grid,.modalbox .grid2{min-width:0}.modalbox input,.modalbox select,.modalbox button{max-width:100%;box-sizing:border-box}@media(max-width:600px){.modal{align-items:flex-start;padding:8px}.modalbox{width:100%;max-height:calc(100dvh - 16px);border-radius:12px;padding:13px}.modalbox .grid,.modalbox .grid2{grid-template-columns:1fr;gap:9px}.modalbox [style*="grid-column:span 2"]{grid-column:auto!important}.modalbox .modalhead{position:sticky;top:-13px;background:var(--surface);z-index:5;padding:4px 0 9px;border-bottom:1px solid var(--border);margin-bottom:8px}.modalbox .modalhead button{flex:0 0 auto}}.hotel-modal-actions-top{display:flex;justify-content:flex-end;gap:8px;margin:10px 0 12px;padding:0 0 10px;border-bottom:1px solid var(--border)}.hotel-provider-notice,.hotel-provider-help,.hotel-provider-explanation{display:none!important}.
+.modalhead{display:flex;justify-content:space-between;align-items:center}.modalhead h3{margin:0;color:var(--text-primary)}.modal-actions{position:sticky;bottom:-16px;z-index:6;display:flex;justify-content:flex-end;gap:8px;margin:16px -16px -16px;padding:12px 16px;background:var(--surface);border-top:1px solid var(--border);box-shadow:0 -8px 18px var(--shadow-sm)}@media(max-width:600px){.modal-actions{bottom:-13px;margin:14px -13px -13px;padding:10px 13px}.modal-actions .btn{min-height:42px}}
+.choicegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.choicecard{border:1px solid color-mix(in srgb,var(--color-gold) 30%,var(--border));border-radius:16px;background:linear-gradient(145deg,var(--surface),var(--surface-2));padding:20px;box-shadow:0 8px 26px var(--shadow-sm);cursor:pointer;transition:.18s}.choicecard:hover{transform:translateY(-2px);box-shadow:0 12px 30px var(--shadow-md);border-color:var(--color-gold)}.choiceicon{width:44px;height:44px;border-radius:12px;background:var(--color-navy);color:var(--text-on-navy);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:10px}.choicecard h3{margin:0;color:var(--text-primary);font-size:15px}.choicecard p{font-size:10px;color:var(--text-muted);line-height:1.5}.pcresult{border:1px solid color-mix(in srgb,var(--color-gold) 45%,var(--border));border-radius:14px;background:linear-gradient(135deg,var(--surface-2),var(--surface-2));padding:13px}.pcrow{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:11px}.pcrow:last-child{border-bottom:0}.pcgrand{font-size:17px;font-weight:950;color:var(--text-primary)}.mini-note{font-size:9px;color:var(--text-muted)}
 @media(max-width:700px){.choicegrid{grid-template-columns:1fr}.choicecard{padding:15px}.pcrow{font-size:10px}}
 @media(max-width:650px){.auth-card{padding:20px}.auth-grid{grid-template-columns:1fr}.auth-grid .field[style*="grid-column"]{grid-column:span 1!important}}
 @media(max-width:900px){.sidebar{width:190px}.grid{grid-template-columns:repeat(2,1fr)}.metrics{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:651px) and (max-width:1100px){.paxgrid{grid-template-columns:repeat(2,minmax(0,1fr));}.pax{min-width:0;overflow:hidden;}.counter{min-width:0;}.counter input{min-width:0;width:100%;}.counter button{flex:0 0 35px;}}
 .paxgrid .pax{min-width:0;overflow:hidden;} .paxgrid .counter{min-width:0;} .paxgrid .counter input{min-width:0;width:100%;}
-@media(max-width:650px){.topbar{height:58px;padding:0 8px;gap:7px}.layout{padding-top:58px}.topbar img{height:34px;width:34px}.topbar .title{font-size:11px;white-space:nowrap}.topbar .sub{font-size:7px}.user-chip{margin-left:auto;gap:5px;max-width:180px}.user-chip>span{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.user-chip b{font-size:10px}.user-role{font-size:8px}.logout{padding:6px 7px!important;font-size:8px!important}.topbar img{height:48px;width:48px}.topbar img{height:48px;width:48px}.sidebar{display:none}.content{padding:10px 10px 78px}.pagehead h1{font-size:19px}.grid,.grid2{grid-template-columns:1fr 1fr}.paxgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;width:100%}.pax{padding:7px 5px;border-radius:9px;min-width:0}.pax b{font-size:9px;line-height:1.12;min-height:30px;display:flex;align-items:flex-start}.counter{gap:3px;margin-top:5px}.counter button{width:25px;height:29px;min-width:25px;padding:0;border-radius:6px;font-size:13px}.counter input{width:100%;min-width:0;height:29px;padding:0 2px;font-size:12px}.metrics{grid-template-columns:1fr 1fr}.invoicehead{grid-template-columns:1fr}.mobileNav{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));position:fixed;bottom:0;left:0;right:0;z-index:60;background:var(--color-navy)!important;border-top:1px solid var(--white-28);padding:7px 3px calc(7px + env(safe-area-inset-bottom));box-shadow:0 -5px 20px var(--gold-18)}.mobileNav button{border:0;background:transparent;color:var(--text-on-navy);font-size:8px;font-weight:900;border-radius:10px;padding:3px 1px}.mobileNav button.active{color:var(--text-on-navy);background:var(--color-navy)}.mobileNav span{display:block;font-size:17px;margin-bottom:2px}.table{font-size:9px}}
+@media(max-width:650px){.topbar{height:58px;padding:0 8px;gap:7px}.layout{padding-top:58px}.topbar img{height:34px;width:34px}.topbar .title{font-size:11px;white-space:nowrap}.topbar .sub{font-size:7px}.user-chip{margin-left:auto;gap:5px;max-width:180px}.user-chip>span{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.user-chip b{font-size:10px}.user-role{font-size:8px}.logout{padding:6px 7px!important;font-size:8px!important}.topbar img{height:48px;width:48px}.topbar img{height:48px;width:48px}.sidebar{display:none}.content{padding:10px 10px 78px}.pagehead h1{font-size:19px}.grid,.grid2{grid-template-columns:1fr 1fr}.paxgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;width:100%}.pax{padding:7px 5px;border-radius:9px;min-width:0}.pax b{font-size:9px;line-height:1.12;min-height:30px;display:flex;align-items:flex-start}.counter{gap:3px;margin-top:5px}.counter button{width:25px;height:29px;min-width:25px;padding:0;border-radius:6px;font-size:13px}.counter input{width:100%;min-width:0;height:29px;padding:0 2px;font-size:12px}.metrics{grid-template-columns:1fr 1fr}.invoicehead{grid-template-columns:1fr}.table{font-size:9px}}
 @media(max-width:380px){.paxgrid{gap:4px}.pax{padding:6px 3px}.pax b{font-size:8px;min-height:29px}.counter{gap:2px}.counter button{width:22px;min-width:22px;height:27px;font-size:12px}.counter input{height:27px;font-size:11px}}
-@media print{.topbar,.sidebar,.mobileNav,.pagehead.no-print{display:none!important}.layout{padding-top:0}.content{padding:0}.page::before{display:none}.topbar,.sidebar,.mobileNav,.no-print,.pageBrand{display:none!important}.content{padding:0}.page{display:none!important}.page#invoicePage{display:block!important}.card{box-shadow:none;border:0}.invoice{border:0}}
+@media print{.topbar,.sidebar,.pagehead.no-print{display:none!important}.layout{padding-top:0}.content{padding:0}.page::before{display:none}.topbar,.sidebar,.no-print,.pageBrand{display:none!important}.content{padding:0}.page{display:none!important}.page#invoicePage{display:block!important}.card{box-shadow:none;border:0}.invoice{border:0}}
 .voucher{background:var(--surface);border:1px solid var(--text-muted);padding:10px;color:var(--text-primary);font-family:Arial,sans-serif;font-size:10px}.voucher{position:relative;overflow:hidden}.voucher>*{position:relative;z-index:1}.voucherHead{display:grid;grid-template-columns:1fr 1.4fr 1fr;gap:8px;align-items:center;border-bottom:1px solid var(--text-muted);padding-bottom:7px}.voucherLogo{width:62px;height:62px;object-fit:contain;display:block}.voucherBrand{display:flex;align-items:center;gap:8px}.voucherBrandText{font-size:12px;font-weight:900;color:var(--color-navy)}.voucherTitle{color:var(--color-navy);font-size:15px;font-weight:900}.voucherSub{font-size:9px;color:var(--text-primary)}.voucherSampleTitle{text-align:center;font-size:14px;font-weight:900}.voucherMeta{font-size:9px;line-height:1.5}.voucherMeta b{font-weight:800}.vtable{width:100%;border-collapse:collapse;margin-top:7px;font-size:8.5px}.vtable th,.vtable td{border:1px solid var(--text-muted);padding:4px 3px;vertical-align:middle}.vtable th{background:var(--surface-2);font-weight:900}.vsectionTitle{background:var(--color-navy);color:var(--text-on-navy);font-weight:900;text-align:center;padding:4px;margin-top:8px}.vblue{background:var(--color-navy)!important;color:var(--text-on-navy)}.vblue td,.vblue th{background:var(--color-navy);color:var(--text-on-navy)}.vsmall{font-size:8px;color:var(--text-primary)}.voucherNote{border:1px solid var(--text-muted);padding:6px;margin-top:7px;min-height:55px}.voucherNoPrint{margin-bottom:10px;position:relative;z-index:20}.voucherNoPrint button{position:relative;z-index:21;pointer-events:auto}.voucher .row{display:flex;justify-content:space-between;gap:10px;padding:3px 0}.voucher .grand{font-size:11px;font-weight:900}.voucherGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:8px}.voucherSection{border:1px solid var(--text-muted);border-radius:0;padding:7px;margin-top:7px}.voucherSection h3{margin:0 0 5px;color:var(--color-navy);font-size:10px}.savebar{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}@media(max-width:650px){.voucher{padding:6px;font-size:8px}.voucherHead{grid-template-columns:1fr 1.2fr 1fr}.voucherLogo{width:45px;height:45px}.vtable{font-size:7px}.vtable th,.vtable td{padding:3px 2px}.voucherGrid{grid-template-columns:1fr}}
 
 .auth-screen{position:fixed;inset:0;z-index:1000;background:linear-gradient(135deg,var(--color-navy) 0%,var(--color-navy) 55%,var(--color-gold) 160%);display:flex;align-items:center;justify-content:center;padding:18px}.auth-card{width:min(430px,100%);background:var(--surface);border-radius:22px;box-shadow:0 25px 80px var(--overlay-dark);padding:26px;border:1px solid color-mix(in srgb,var(--color-gold) 35%,var(--border))}.auth-logo{width:110px;height:110px;object-fit:contain;display:block;margin:0 auto 10px}.auth-title{text-align:center;color:var(--color-navy);font-size:23px;font-weight:950}.auth-sub{text-align:center;color:var(--text-muted);font-size:11px;margin:5px 0 18px}.auth-error{display:none;background:color-mix(in srgb,var(--danger) 10%,var(--surface));border:1px solid var(--danger);color:var(--danger);border-radius:9px;padding:9px;font-size:10px;margin-bottom:10px}.linkbtn{border:0;background:none;color:var(--color-navy);font-size:10px;font-weight:900;padding:2px 4px;text-decoration:underline}.auth-section-title{margin:0 0 12px;color:var(--color-navy);font-size:16px}.auth-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}.auth-grid .field input,.auth-grid .field select{min-height:38px;padding:8px 9px}.user-chip{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:10px;font-weight:800}.user-chip .logout{background:var(--white-08);border:1px solid var(--white-35);color:var(--text-on-navy);border-radius:8px;padding:7px 9px}.adminOnly{display:none}.user-role{font-size:9px;opacity:.7}.admin-table td,.admin-table th{font-size:10px}.admin-badge{display:inline-block;padding:4px 7px;border-radius:99px;background:var(--surface-2);color:var(--color-navy);font-weight:900}.admin-badge.off{background:color-mix(in srgb,var(--danger) 10%,var(--surface));color:var(--danger)}
@@ -33,18 +33,17 @@
 .dashboard-donut{width:170px;height:170px;border-radius:50%;background:conic-gradient(var(--color-navy) 0deg 0deg,var(--border) 0deg 360deg);display:flex;align-items:center;justify-content:center;flex:0 0 170px}.dashboard-donut-hole{width:108px;height:108px;border-radius:50%;background:var(--surface);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;border:1px solid var(--border)}.dashboard-donut-hole b{font-size:22px;color:var(--color-navy)}.dashboard-donut-hole span{font-size:9px;color:var(--text-muted)}.dashboard-legend-row{display:flex;align-items:center;gap:7px;font-size:10px}.dashboard-legend-dot{width:9px;height:9px;border-radius:50%;flex:0 0 9px}.dashboard-legend-value{margin-left:auto;font-weight:900;color:var(--color-navy)}
 
 .appearance-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.appearance-tabs{display:flex;gap:6px;margin-bottom:10px}.appearance-tabs button{white-space:nowrap}.appearance-picker{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid var(--border);border-radius:12px;padding:10px;background:var(--surface)}.appearance-picker input[type=color]{width:52px;height:38px;padding:2px;border:1px solid var(--border);border-radius:8px;background:var(--surface);cursor:pointer}.appearance-preview{display:grid;grid-template-columns:1.2fr 1fr;gap:10px;margin-top:10px}.appearance-preview .preview-bar{padding:12px;border-radius:10px;font-weight:900}.appearance-preview .preview-card{padding:12px;border:1px solid var(--border);border-radius:10px;background:var(--surface)}.appearance-preview .preview-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}.appearance-swatch{display:flex;align-items:center;gap:7px;font-size:9px;font-weight:800;color:var(--text-muted)}.appearance-swatch i{width:24px;height:24px;border-radius:6px;border:1px solid var(--border);display:block}.appearance-actions{display:flex;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-top:10px}@media(max-width:650px){.appearance-grid,.appearance-preview{grid-template-columns:1fr}}
-</style><style id="v201-professional-internal-icons">
-.step{display:inline-flex!important;align-items:center!important;gap:6px!important}
-.stepicon{width:18px!important;height:18px!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 18px!important;color:currentColor!important}
-.stepicon svg{width:18px!important;height:18px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-.choiceicon svg{width:22px!important;height:22px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-.modeicon{display:inline-flex!important;width:17px!important;height:17px!important;vertical-align:-4px!important;margin-right:4px!important}
-.modeicon svg{width:17px!important;height:17px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
-</style>
 
-
-
-<style id="step4-hotel-modal-clean">
+/* Current modern application shell. */
+:root{--header-height:72px;--sidebar-width:236px;--content-max:1500px}
+html,body{min-height:100%;background:var(--bg)}
+.modern-topbar{height:var(--header-height)!important;background:var(--surface)!important;color:var(--text-primary)!important;border-bottom:1px solid var(--border)!important;box-shadow:0 8px 28px var(--shadow-sm)!important;position:fixed!important;z-index:100000!important}
+.modern-topbar .brand-lockup{display:flex;align-items:center;gap:11px;min-width:0}.modern-topbar .brand-lockup img{width:46px!important;height:46px!important;object-fit:contain}.modern-topbar .title{font-size:15px!important;font-weight:950!important;color:var(--text-primary)!important;letter-spacing:.8px}.modern-topbar .sub{font-size:8px!important;color:var(--text-muted)!important;opacity:1!important;letter-spacing:1px;margin-top:2px}.header-center{margin-left:28px;display:flex;align-items:center;gap:8px;font-size:10px;font-weight:850;color:var(--text-muted)}.status-dot{width:8px;height:8px;border-radius:50%;background:var(--color-gold);display:inline-block;box-shadow:0 0 0 4px color-mix(in srgb,var(--color-gold) 14%,transparent)}.modern-topbar .header-actions{margin-left:auto}.modern-topbar .user-chip{color:var(--text-primary)}.modern-topbar .logout{background:var(--surface-2)!important;color:var(--text-primary)!important;border-color:var(--border)!important}
+.modern-layout{max-width:var(--content-max)!important;padding-top:var(--header-height)!important;min-height:100vh;display:block!important}.modern-sidebar{position:fixed!important;top:var(--header-height)!important;bottom:0!important;left:max(0px,calc((100vw - var(--content-max))/2))!important;width:var(--sidebar-width)!important;min-height:calc(100vh - var(--header-height))!important;background:var(--surface)!important;color:var(--text-primary)!important;border-right:1px solid var(--border)!important;padding:22px 14px 16px!important;box-shadow:10px 0 32px var(--shadow-sm)!important;z-index:900!important;display:flex;flex-direction:column}.nav-section-label{font-size:8px;font-weight:950;letter-spacing:1.3px;color:var(--text-muted);padding:0 10px 8px}.modern-sidebar .navitem{width:100%!important;justify-content:flex-start!important;min-height:46px;margin:3px 0!important;border:1px solid transparent!important;border-radius:12px!important;background:transparent!important;color:var(--text-muted)!important;padding:11px 12px!important;font-size:11px!important;font-weight:850!important;gap:11px!important}.modern-sidebar .navitem.active{background:color-mix(in srgb,var(--color-gold) 14%,var(--surface))!important;color:var(--color-navy)!important;border-color:color-mix(in srgb,var(--color-gold) 28%,var(--border))!important;box-shadow:0 5px 14px color-mix(in srgb,var(--color-gold) 8%,transparent)}.modern-sidebar .navitem:hover{background:var(--surface-2)!important;color:var(--text-primary)!important}.modern-sidebar .navicon{width:22px!important;min-width:22px!important;height:22px!important;display:inline-flex!important;align-items:center;justify-content:center;font-size:16px!important;color:inherit}.modern-sidebar .navicon svg{width:19px!important;height:19px!important;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.sidebar-foot{margin-top:auto;border-top:1px solid var(--border);padding:14px 9px 2px;display:flex;align-items:center;gap:10px;color:var(--text-primary)}.sidebar-foot b{display:block;font-size:10px}.sidebar-foot small{display:block;font-size:8px;color:var(--text-muted);margin-top:2px}.modern-content{margin-left:var(--sidebar-width)!important;width:calc(100% - var(--sidebar-width))!important;max-width:none!important;padding:24px 26px 34px!important}.mobile-menu-toggle{display:none;border:1px solid var(--white-28);background:var(--white-08);color:var(--text-on-navy);border-radius:9px;width:36px;height:36px;font-size:18px;font-weight:900;align-items:center;justify-content:center}
+.pagehead h1,.section-title,.page h1,.page h2,.page h3{color:var(--text-primary)}.pagehead p,.muted{color:var(--text-muted)}.card,.metric,.stay,.flight,.service,.pax{background:var(--surface)!important;border-color:var(--border)!important}.btn.outline{background:var(--surface)!important;color:var(--text-primary)!important;border-color:var(--border)!important}.btn.primary{background:var(--color-navy)!important;color:var(--text-on-navy)!important}.field input,.field select{background:var(--surface)!important;color:var(--text-primary)!important;border-color:var(--border)!important}.table th{background:var(--surface-2)!important;color:var(--text-muted)!important}.theme-toggle{background:var(--surface-2)!important;color:var(--text-primary)!important;border-color:var(--border)!important}
+@media(max-width:900px){.modern-sidebar{width:210px!important;left:0!important}.modern-content{margin-left:210px!important;width:calc(100% - 210px)!important;padding:18px!important}.header-center{display:none}}
+@media(max-width:650px){.mobile-menu-toggle{display:flex!important;flex:0 0 36px}.mobile-nav-backdrop{position:fixed;inset:64px 0 0;background:var(--overlay-dark);z-index:850;display:none}.mobile-nav-backdrop.open{display:block}.modern-topbar{height:64px!important;padding:0 12px!important}.modern-topbar .brand-lockup img{width:38px!important;height:38px!important}.modern-topbar .title{font-size:12px!important}.modern-topbar .sub{font-size:7px!important}.modern-topbar .user-meta{display:none}.modern-layout{padding-top:64px!important}.modern-sidebar{display:flex!important;transform:translateX(-110%)!important}modern-content{margin-left:0!important;width:100%!important;padding:14px 12px 28px!important}.pagehead h1{font-size:21px!important}.card{border-radius:15px!important}.metrics{grid-template-columns:1fr 1fr!important}.grid,.grid2{grid-template-columns:1fr!important}.paxgrid{grid-template-columns:1fr 1fr!important}}
+</style><style id="step4-hotel-modal-clean">
 /* Step 4: Hotel Edit modal — compact, scrollable, and above mobile navigation. */
 #modal.modal{z-index:1000000!important;overflow:hidden!important}
 #modal.modal .modalbox{box-sizing:border-box;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
@@ -63,43 +62,7 @@
 
 
 
-<script id="v2-0-1-central-ui-controller">
-(function(){
-  const labels={dashboard:'Dashboard',bookingWizard:'Bookings',summary:'Records',quotes:'Records',sales:'Sales',settings:'Settings',admin:'User'};
-  function sync(){
-    const active=document.querySelector('.page.active');
-    const id=active?active.id:'';
-    document.querySelectorAll('.mobileNav button').forEach(function(b){b.classList.remove('active')});
-    if(id){
-      let btn=document.querySelector('.mobileNav button[data-page="'+id+'"]');
-      if(!btn && labels[id]){
-        const label=labels[id].toLowerCase();
-        btn=Array.from(document.querySelectorAll('.mobileNav button')).find(function(x){return (x.getAttribute('aria-label')||'').toLowerCase()===label});
-      }
-      if(btn)btn.classList.add('active');
-    }
-  }
-  window.syncV201UI=sync;
-  window.setMobileNavActive=function(btn){sync();if(btn){document.querySelectorAll('.mobileNav button').forEach(function(x){x.classList.remove('active')});btn.classList.add('active')}};
-  document.addEventListener('DOMContentLoaded',sync);
-  /* IMPORTANT: do not observe class/aria-label mutations here. sync() itself changes
-     those attributes, which previously caused an endless MutationObserver feedback
-     loop and could freeze the app when opening User Management. Navigation is already
-     synchronized explicitly by showPage(); a lightweight childList observer is enough
-     for dynamically-rendered navigation. */
-  if(window.MutationObserver){
-    var syncQueued=false;
-    var queueSync=function(){
-      if(syncQueued)return;
-      syncQueued=true;
-      requestAnimationFrame(function(){syncQueued=false;sync();});
-    };
-    new MutationObserver(queueSync).observe(document.body,{childList:true,subtree:true});
-  }
-  setTimeout(sync,100);
-})();
-</script>
-<script id="v2-0-1-shared-config-permissions-final">
+<script id="kea-shared-config-permissions">
 (function(){
   /* Shared configuration is read-only for general users. Only Super Admin sees or can invoke mutation controls. */
   function canManageShared(){ return typeof isSuperAdmin==='function' && isSuperAdmin(); }
@@ -139,109 +102,56 @@
   window.syncSharedConfigControls=applySharedConfigPermissions;
   window.applySharedConfigPermissions=applySharedConfigPermissions;
 })();
-</script><script id="v202-data-migration">
-(function(){
-  'use strict';
-  // One-time migration for data created by pre-unified versions.
-  // Migration is deliberately isolated from normal runtime code. It only copies
-  // valid JSON into the current V201 keys and never runs again after success.
-  const FLAG='keaV202DataMigration';
-  if(localStorage.getItem(FLAG)==='complete') return;
-  const copyJson=(source,target,transform)=>{
-    const raw=localStorage.getItem(source);
-    if(raw===null || localStorage.getItem(target)!==null) return true;
-    let value;
-    try{ value=JSON.parse(raw); }catch(e){ return false; }
-    if(typeof transform==='function') value=transform(value);
-    const encoded=JSON.stringify(value);
-    try{
-      localStorage.setItem(target,encoded);
-      return localStorage.getItem(target)===encoded;
-    }catch(e){
-      try{localStorage.removeItem(target);}catch{}
-      return false;
-    }
-  };
-  const normalizeLegacyQuotes=(value)=>{
-    if(!Array.isArray(value)) return value;
-    return value.map(q=>{
-      if(!q || typeof q!=='object') return q;
-      const out={...q};
-      // Historical Calculator records are now ordinary draft Quotes.
-      if(out._legacyCalculator || !out.status) out.status=out._legacyCalculator?'draft':'confirmed';
-      delete out._legacyCalculator;
-      return out;
-    });
-  };
-  try{
-    let ok=true;
-    const single=[
-      ['keaHotelsV10','keaHotelsV201'],
-      ['keaVisaV10','keaVisaV201'],
-      ['keaTransportV10','keaTransportV201'],
-      ['keaExtrasV10','keaExtrasV201'],
-      ['keaAirlinesV10','keaAirlinesV201'],
-      ['keaFxV2.0.1','keaFxV201'],
-      ['keaUsersV10','keaUsersV201'],
-      ['keaSessionV10','keaSessionV201']
-    ];
-    for(const [source,target] of single) if(!copyJson(source,target)) ok=false;
-
-    const prefixes=[
-      ['keaQuotesV10_','keaQuotesV201_',normalizeLegacyQuotes],
-      ['keaQuotesV11_','keaQuotesV201_',normalizeLegacyQuotes],
-      ['keaQuotesV7','keaQuotesV201_',normalizeLegacyQuotes],
-      ['keaRecycleV13_','keaRecycleV201_',null]
-    ];
-    for(const [oldPrefix,newPrefix,transform] of prefixes){
-      const keys=[];
-      for(let i=0;i<localStorage.length;i++){
-        const key=localStorage.key(i);
-        if(key && key.startsWith(oldPrefix)) keys.push(key);
-      }
-      for(const key of keys){
-        const target=newPrefix+key.slice(oldPrefix.length);
-        if(!copyJson(key,target,transform)) ok=false;
-      }
-    }
-    if(ok) localStorage.setItem(FLAG,'complete');
-  }catch(e){ console.warn('Historical data migration deferred:',e); }
-})();
-</script>
-<style class="v201-professional-icon-overrides">
+</script><style id="kea-modern-ui-icons">
 /* Step 9 professional icon system: restrained monochrome line icons */
-.v201-professional-icon-overrides .navsvg,
-.v201-professional-icon-overrides .stepicon,
-.v201-professional-icon-overrides .choiceicon,
-.v201-professional-icon-overrides .modeicon { color: currentColor; }
-.v201-professional-icon-overrides .navsvg svg,
-.v201-professional-icon-overrides .stepicon svg,
-.v201-professional-icon-overrides .choiceicon svg,
-.v201-professional-icon-overrides .modeicon svg {
+.navsvg,
+.stepicon,
+.choiceicon,
+.modeicon { color: currentColor; }
+.navsvg svg,
+.stepicon svg,
+.choiceicon svg,
+.modeicon svg {
   fill: none !important; stroke: currentColor !important;
   stroke-width: 1.75 !important; stroke-linecap: round !important; stroke-linejoin: round !important;
 }
-.v201-professional-icon-overrides .navsvg { width: 20px; height: 20px; display:inline-flex; align-items:center; justify-content:center; flex:0 0 20px; }
-.v201-professional-icon-overrides .navsvg svg { width:18px; height:18px; }
-.v201-professional-icon-overrides .stepicon { width:18px !important; height:18px !important; }
-.v201-professional-icon-overrides .stepicon svg { width:17px !important; height:17px !important; }
-.v201-professional-icon-overrides .choiceicon { width:42px; height:42px; border-radius:10px; background:var(--color-navy) !important; color:var(--text-on-navy) !important; box-shadow:none !important; font-size:0; border:1px solid var(--gold-28); }
-.v201-professional-icon-overrides .choiceicon svg { width:21px !important; height:21px !important; stroke-width:1.7 !important; }
-.v201-professional-icon-overrides .modeicon { width:17px !important; height:17px !important; }
-.v201-professional-icon-overrides .modeicon svg { width:16px !important; height:16px !important; }
-.v201-professional-icon-overrides .navitem .navicon { font-size:0 !important; width:20px !important; height:20px !important; }
-.v201-professional-icon-overrides .navitem .navicon svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
-.v201-professional-icon-overrides .mobileNav button .navsvg { color:var(--text-on-navy); }
-.v201-professional-icon-overrides .mobileNav button.active .navsvg { color:var(--color-gold-light) !important; }
-.v201-professional-icon-overrides .mobileNav button.active .navsvg svg { stroke:currentColor !important; }
-.v201-professional-icon-overrides .page .navsvg { color:var(--color-navy) !important; }
-.v201-professional-icon-overrides .page .navsvg svg { stroke:currentColor !important; }
+.navsvg { width: 20px; height: 20px; display:inline-flex; align-items:center; justify-content:center; flex:0 0 20px; }
+.navsvg svg { width:18px; height:18px; }
+.stepicon { width:18px !important; height:18px !important; }
+.stepicon svg { width:17px !important; height:17px !important; }
+.choiceicon { width:42px; height:42px; border-radius:10px; background:var(--color-navy) !important; color:var(--text-on-navy) !important; box-shadow:none !important; font-size:0; border:1px solid var(--gold-28); }
+.choiceicon svg { width:21px !important; height:21px !important; stroke-width:1.7 !important; }
+.modeicon { width:17px !important; height:17px !important; }
+.modeicon svg { width:16px !important; height:16px !important; }
+.navitem .navicon { font-size:0 !important; width:20px !important; height:20px !important; }
+.navitem .navicon svg { width:18px; height:18px; fill:none; stroke:currentColor; stroke-width:1.75; stroke-linecap:round; stroke-linejoin:round; }
+.page .navsvg { color:var(--color-navy) !important; }
+.page .navsvg svg { stroke:currentColor !important; }
 </style>
 <style id="kea-theme-toggle">
 .theme-toggle{width:34px;height:34px;border:1px solid var(--gold-22);border-radius:50%;background:transparent;color:var(--color-gold);display:inline-flex;align-items:center;justify-content:center;padding:0;flex:0 0 34px}.theme-toggle-icon{width:17px;height:17px;display:block;position:relative}.theme-toggle-icon::before{content:'☀';font-size:17px;line-height:17px;color:var(--color-gold)}[data-theme="night"] .theme-toggle-icon::before{content:'☾'}
 </style>
+<style id="kea-current-shell">
+:root{--header-height:72px;--sidebar-width:248px;--content-max:1480px;}
+body{background:var(--bg);color:var(--text-primary);}
+.topbar{height:var(--header-height)!important;background:color-mix(in srgb,var(--surface) 94%,var(--color-navy) 6%)!important;color:var(--text-primary)!important;border-bottom:1px solid var(--border)!important;box-shadow:0 8px 30px var(--shadow-sm)!important;padding:0 22px!important;gap:16px!important;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+.brand-lockup{display:flex;align-items:center;gap:12px;min-width:0}.brand-lockup img{width:48px!important;height:48px!important;object-fit:contain}.topbar .title{font-size:15px!important;font-weight:950!important;letter-spacing:.8px!important;color:var(--text-primary)!important}.topbar .sub{font-size:9px!important;color:var(--text-muted)!important;opacity:1!important;letter-spacing:.5px}.header-actions{margin-left:auto;display:flex;align-items:center}.user-chip{margin-left:0!important;display:flex!important;align-items:center;gap:9px!important;color:var(--text-primary)!important}.user-meta{display:flex;align-items:baseline;gap:5px;min-width:0}.user-chip b{font-size:11px;color:var(--text-primary)}.user-role{font-size:9px!important;color:var(--text-muted)!important;opacity:1!important}.logout{background:var(--surface)!important;color:var(--text-primary)!important;border:1px solid var(--border)!important;border-radius:10px!important;padding:8px 11px!important;font-size:10px!important}.theme-toggle{width:36px;height:36px;border-radius:10px!important;border:1px solid var(--border)!important;background:var(--surface-2)!important;color:var(--text-primary)!important;display:inline-flex!important;align-items:center;justify-content:center}.theme-toggle-icon:before{content:'◐';font-size:17px;line-height:1;color:currentColor}
+.layout{max-width:var(--content-max)!important;padding-top:var(--header-height)!important;min-height:100vh;background:transparent}.sidebar{width:var(--sidebar-width)!important;background:var(--surface)!important;color:var(--text-primary)!important;min-height:calc(100vh - var(--header-height))!important;padding:18px 14px!important;position:fixed!important;left:max(0px,calc((100vw - var(--content-max))/2))!important;top:var(--header-height)!important;border-right:1px solid var(--border)!important;box-shadow:8px 0 30px var(--shadow-sm)!important;z-index:50}.navitem{color:var(--text-muted)!important;border:1px solid transparent!important;border-radius:12px!important;padding:12px 13px!important;margin:4px 0!important;background:transparent!important;font-size:11px!important;font-weight:850!important}.navitem.active{background:color-mix(in srgb,var(--color-gold) 16%,var(--surface))!important;color:var(--color-navy)!important;border-color:color-mix(in srgb,var(--color-gold) 30%,var(--border))!important}.navitem:hover{background:var(--surface-2)!important;color:var(--text-primary)!important}.navicon{color:inherit!important}.content{margin-left:var(--sidebar-width)!important;padding:24px!important;max-width:calc(var(--content-max) - var(--sidebar-width))!important;width:100%!important}.pagehead h1,.section-title,.page h1,.page h2,.page h3{color:var(--text-primary)}.card{background:var(--surface)!important;border-color:var(--border)!important;box-shadow:0 10px 30px var(--shadow-sm)!important;border-radius:16px!important}.metric{background:var(--surface)!important;border-color:var(--border)!important}.metric .v,.table td strong,.row b{color:var(--text-primary)}
+
+@media(max-width:900px){.sidebar{width:190px!important;left:0!important}.content{margin-left:190px!important;max-width:calc(100vw - 190px)!important;padding:18px!important}}
+@media(max-width:650px){:root{--header-height:62px}.topbar{height:var(--header-height)!important;padding:0 12px!important}.brand-lockup img{width:38px!important;height:38px!important}.topbar .title{font-size:12px!important}.topbar .sub{font-size:7px!important}.user-meta{display:none}.user-chip{gap:6px!important}.theme-toggle{width:34px;height:34px}.logout{padding:7px 9px!important;font-size:9px!important}.layout{padding-top:var(--header-height)!important;display:block!important}.sidebar{position:sticky!important;left:auto!important;top:var(--header-height)!important;width:100%!important;height:auto!important;min-height:0!important;padding:8px!important;border-right:0!important;border-bottom:1px solid var(--border)!important;box-shadow:0 6px 20px var(--shadow-sm)!important;display:flex!important;overflow-x:auto!important;gap:6px!important;z-index:40!important}.navitem{flex:0 0 auto!important;width:auto!important;min-width:76px!important;justify-content:center!important;padding:9px 10px!important;margin:0!important;text-align:center!important;font-size:9px!important}.navicon{width:18px!important;min-width:18px!important}.navitem span:last-child{display:block}.content{margin-left:0!important;max-width:100%!important;padding:12px 12px 24px!important}.pagehead{align-items:flex-start!important}.pagehead h1{font-size:20px!important}.pagehead p{font-size:10px!important}.grid,.grid2{grid-template-columns:1fr!important}.metrics{grid-template-columns:1fr 1fr!important}.paxgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.steps{padding-bottom:2px}.card{padding:13px!important;border-radius:14px!important}.software-version{font-size:14px!important;color:var(--text-muted)!important}.appearance-picker{grid-template-columns:1fr auto!important}}
+@media print{.sidebar{display:none!important}.content{margin-left:0!important;max-width:none!important}.topbar{display:none!important}}
+
+.mobile-menu-toggle{display:none;border:1px solid var(--white-28);background:var(--white-08);color:var(--text-on-navy);border-radius:9px;width:36px;height:36px;font-size:18px;font-weight:900;align-items:center;justify-content:center}
+</style>
+<style id="kea-current-ui-marker">
+.airline-home-card{border-top:3px solid var(--color-gold)!important;}
+[data-theme="night"] .pageBrand{background:linear-gradient(90deg,var(--surface) 0%,var(--surface-2) 55%,var(--surface-2) 100%)!important;}
+[data-theme="night"] .modern-topbar{background:color-mix(in srgb,var(--surface) 90%,#000 10%)!important;}
+[data-theme="night"] .modern-sidebar{background:var(--surface)!important;}
+</style>
 </head>
-<body class="v201-professional-icon-overrides">
+<body>
 <div class="auth-screen" id="authScreen">
   <div class="auth-card">
     <img class="auth-logo" src="assets/logo.png" alt="Karvan e Asal logo">
@@ -288,11 +198,11 @@
   </div>
 </div>
 <div class="app" id="appRoot" style="display:none">
-<header class="topbar"><img src="assets/logo.png" onerror="this.style.display='none'"><div><div class="title">KARVAN E ASAL</div><div class="sub">UMRAH PACKAGE MANAGER</div></div><div class="user-chip"><span><b id="topUserName">User</b><span class="user-role" id="topUserRole"></span></span><button class="theme-toggle" id="themeToggle" type="button" onclick="toggleThemeMode()" aria-label="Switch to night mode" title="Switch to night mode"><span class="theme-toggle-icon" aria-hidden="true"></span></button><button class="logout" onclick="logoutUser()">Logout</button></div></header>
-<div class="layout">
-<aside class="sidebar"><button class="navitem active" onclick="showPage('dashboard',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 10.5 12 3l8.5 7.5v9a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1z"/><path d="M9 20.5v-6h6v6"/></svg></span><span>Dashboard</span></button><button class="navitem" onclick="newBooking(this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v3M16 5v3M3 10h18M8 14h3"/></svg></span><span>Bookings</span></button><button class="navitem" onclick="showPage('sales',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V6M16 20v-9M22 20V3"/><path d="M2.5 20.5h20"/></svg></span><span>Sales</span></button><button class="navitem" onclick="showPage('records',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.5h11a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3z"/><path d="M8 4.5v15M11 9h5M11 13h5M11 17h4"/></svg></span><span>Records</span></button><button class="navitem" onclick="showPage('settings',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.7 3.7h4.6l.7 2.2 2 .9 2.1-1 3.2 3.2-1 2.1.9 2 .8.8v4.6l-2.2.7-.9 2-2.1-1-2 .9-.7 2.2H9.7L9 20.1l-2-.9-2.1 1-3.2-3.2 1-2.1-.9-2-.8-.7V7.6l2.2-.7.9-2 2.1 1 2-.9z"/><circle cx="12" cy="12" r="3.2"/></svg></span><span>Settings</span></button><button class="navitem" id="adminNav" onclick="showPage('admin',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v5.5c0 4.8-3.2 7.8-8 9.5-4.8-1.7-8-4.7-8-9.5V6z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></span><span>User</span></button></aside>
-<main class="content">
-<section id="dashboard" class="page active"><div class="pagehead"><div><h1>Dashboard</h1><p>Live overview derived from the single Quote / Booking source.</p></div><div class="field" style="min-width:150px"><label>Dashboard Period</label><select id="dashboardPeriod" onchange="dashboard()"><option value="monthly" selected>Current Month</option><option value="3month">Last 3 Months</option><option value="6month">Last 6 Months</option><option value="yearly">Current Year</option><option value="all">All Time</option></select></div></div><div class="metrics"><div class="metric"><div class="k">Total Sales — SAR</div><div class="v" id="mSalesSar">SAR 0.00</div></div><div class="metric"><div class="k">Packages Booked</div><div class="v" id="mQuotes">0</div></div><div class="metric"><div class="k">Currently Ongoing</div><div class="v" id="mOngoing">0</div></div><div class="metric"><div class="k">Total Pax</div><div class="v" id="mPax">0</div></div></div><div class="grid2" style="margin-top:13px"><div class="card"><h3 class="section-title">Sales — This Month vs All Time</h3><div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap"><div id="dashboardDonut" class="dashboard-donut" aria-label="Booking status chart"><div class="dashboard-donut-hole"><b id="dashboardDonutTotal">0</b><span>Bookings</span></div></div><div id="dashboardLegend" style="display:grid;gap:7px;min-width:180px"></div></div></div><div class="card"><h3 class="section-title">Quick Actions</h3><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold" onclick="newBooking()">+ New Booking</button><button class="btn outline" onclick="showPage('records')">Records</button><button class="btn outline" onclick="showPage('settings')">Settings</button></div><div class="muted" style="margin-top:10px">Sales and booking figures are derived from Quotes; no separate manual sales total is used.</div></div></div><div class="card" style="margin-top:0"><h3 class="section-title">System Overview</h3><div class="metrics"><div class="metric"><div class="k">Hotels</div><div class="v" id="mHotels">0</div></div><div class="metric"><div class="k">Visa Types</div><div class="v" id="mVisa">0</div></div><div class="metric"><div class="k">PKR / SAR</div><div class="v" id="mFx">75</div></div><div class="metric"><div class="k">Unpaid / Partial</div><div class="v" id="mDue">0</div></div></div></div></section>
+<header class="topbar modern-topbar"><div class="brand-lockup"><img src="assets/logo.png" alt="Karvan e Asal logo" onerror="this.style.display='none'"><div><div class="title">KARVAN E ASAL</div><div class="sub">UMRAH MANAGEMENT</div></div></div><div class="header-center"><span class="status-dot"></span><span>Operations Console</span></div><div class="header-actions"><div class="user-chip"><button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" onclick="toggleMobileMenu()" aria-label="Open navigation" aria-expanded="false">☰</button><span class="user-meta"><b id="topUserName">User</b><span class="user-role" id="topUserRole"></span></span><button class="theme-toggle" id="themeToggle" type="button" onclick="toggleThemeMode()" aria-label="Switch to night mode" title="Switch to night mode"><span class="theme-toggle-icon" aria-hidden="true"></span></button><button class="logout" onclick="logoutUser()">Logout</button></div></div></header>
+<div class="layout modern-layout">
+<aside class="sidebar modern-sidebar"><div class="nav-section-label">MAIN MENU</div><button class="navitem active" data-page="dashboard" onclick="showPage('dashboard',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 10.5 12 3l8.5 7.5v9a1 1 0 0 1-1-1H4.5a1 1 0 0 1-1-1z"/><path d="M9 20.5v-6h6v6"/></svg></span><span>Dashboard</span></button><button class="navitem" data-page="bookingWizard" aria-label="Bookings" onclick="newBooking(this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v3M16 5v3M3 10h18M8 14h3"/></svg></span><span>Bookings</span></button><button class="navitem" data-page="sales" onclick="showPage('sales',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V6M16 20v-9M22 20V3"/><path d="M2.5 20.5h20"/></svg></span><span>Sales</span></button><button class="navitem" data-page="records" onclick="showPage('records',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.5h11a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3z"/><path d="M8 4.5v15M11 9h5M11 13h5M11 17h4"/></svg></span><span>Records</span></button><button class="navitem" data-page="settings" onclick="showPage('settings',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.7 3.7h4.6l.7 2.2 2 .9 2.1-1 3.2 3.2-1 2.1.9 2 .8.8v4.6l-2.2.7-.9 2-2.1-1-2 .9-.7 2.2H9.7L9 20.1l-2-.9-2.1 1-3.2-3.2 1-2.1-.9-2-.8-.7V7.6l2.2-.7.9-2 2.1 1 2-.9z"/><circle cx="12" cy="12" r="3.2"/></svg></span><span>Settings</span></button><button class="navitem" id="adminNav" data-page="admin" aria-label="User" onclick="showPage('admin',this)"><span class="navicon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v5.5c0 4.8-3.2 7.8-8 9.5-4.8-1.7-8-4.7-8-9.5V6z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></span><span>User Management</span></button><div class="sidebar-foot"><span class="status-dot"></span><div><b>Secure Workspace</b><small>Synced account data</small></div></div></aside>
+<main class="content modern-content">
+<section id="dashboard" class="page active"><div class="pagehead"><div><h1>Dashboard</h1><p>Live overview derived from the single Quote / Booking source.</p></div><div class="field" style="min-width:150px"><label>Dashboard Period</label><select id="dashboardPeriod" onchange="dashboard()"><option value="monthly" selected>Current Month</option><option value="3month">Last 3 Months</option><option value="6month">Last 6 Months</option><option value="yearly">Current Year</option><option value="all">All Time</option></select></div></div><div class="metrics"><div class="metric"><div class="k">Total Sales — SAR</div><div class="v" id="mSalesSar">SAR 0.00</div></div><div class="metric"><div class="k">Packages Booked</div><div class="v" id="mQuotes">0</div></div><div class="metric"><div class="k">Currently Ongoing</div><div class="v" id="mOngoing">0</div></div><div class="metric"><div class="k">Total Pax</div><div class="v" id="mPax">0</div></div></div><div class="grid2" style="margin-top:13px"><div class="card"><h3 class="section-title">Sales — This Month vs All Time</h3><div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap"><div id="dashboardDonut" class="dashboard-donut" aria-label="Booking status chart"><div class="dashboard-donut-hole"><b id="dashboardDonutTotal">0</b><span>Bookings</span></div></div><div id="dashboardLegend" style="display:grid;gap:7px;min-width:180px"></div></div></div><div class="card"><h3 class="section-title">Quick Actions</h3><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold" onclick="newBooking()">+ New Booking</button><button class="btn outline" onclick="showPage('records')">Records</button><button class="btn outline" onclick="showPage('settings')">Settings</button></div><div class="muted" style="margin-top:10px">Sales and booking figures are derived from Quotes; no separate manual sales total is used.</div></div></div><div class="card airline-home-card" id="airlineSettingsCard"><div class="pagehead" style="margin-bottom:8px"><div><h3 class="section-title" style="margin:0">Airlines Management</h3><div class="muted">Manage airline names and IATA codes used throughout New Booking.</div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn gold" type="button" onclick="addAirline()">+ Add Airline</button></div></div><div id="airlineManager" style="margin-top:10px"></div></div><div class="card" style="margin-top:0"><h3 class="section-title">System Overview</h3><div class="metrics"><div class="metric"><div class="k">Hotels</div><div class="v" id="mHotels">0</div></div><div class="metric"><div class="k">Visa Types</div><div class="v" id="mVisa">0</div></div><div class="metric"><div class="k">PKR / SAR</div><div class="v" id="mFx">75</div></div><div class="metric"><div class="k">Unpaid / Partial</div><div class="v" id="mDue">0</div></div></div></div></section>
 <section id="bookingWizard" class="page"><div class="pagehead"><div><h1>New Booking</h1><p>Create and save a customer booking.</p></div></div><div class="steps" id="steps"></div><div class="card" id="wizard"></div></section>
 <section id="quotes" class="page" aria-hidden="true"><div class="pagehead"><div><h1>Bookings</h1><p>Manage saved bookings, vouchers and quotations.</p></div></div><div class="tabs"><button id="savedVoucherTab" class="btn outline on" onclick="renderSavedFiles('voucher',this)">Voucher</button><button id="savedQuoteTab" class="btn outline" onclick="renderSavedFiles('quote',this)">Quotes</button></div><div class="card" id="quoteList"></div></section>
 <section id="records" class="page"><div class="pagehead"><div><h1>Records</h1><p>Live views of the single Quote source — drafts and confirmed/active bookings.</p></div></div><div class="tabs"><button id="recordsInvoiceTab" class="btn outline on" onclick="renderRecords('invoice',this)">Booking Invoice</button><button id="recordsSummaryTab" class="btn outline" onclick="renderRecords('summary',this)">Calculation Summary</button></div><div class="card" id="recordsList"></div><div class="card" id="recordPreviewCard" style="display:none"><div class="pagehead" style="margin-bottom:8px"><div><h3 class="section-title" style="margin:0">Record Preview</h3><div id="recordPreviewMeta" class="muted"></div></div><button class="btn outline no-print" onclick="closeRecordPreview()">Close</button></div><div id="recordPreview"></div></div></section>
@@ -305,27 +215,19 @@
 
 <section id="summary" class="page"><div class="pagehead"><div><h1>Calculation Summary</h1><p>Calculation result preview.</p></div></div><div class="card" id="summaryBody"></div></section>
 <section id="voucher" class="page"><div class="pagehead"><div><h1>Voucher</h1><p>Automatically filled from the quotation form. Terms & conditions are intentionally excluded.</p></div><div class="savebar no-print"><button class="btn gold" onclick="printVoucher()">Print / Save PDF</button><button class="btn outline" onclick="downloadVoucher()">Save to Device</button><button class="btn outline" onclick="shareVoucher()">Share / Save to Files</button></div></div><div class="card"><div class="voucher" id="voucherBody"></div></div></section>
-<section id="settings" class="page"><div class="pagehead"><div><h1>Settings</h1><p>System settings, management tools, exchange rate and local backup.</p></div></div><div class="card" id="managementSettingsCard"><h3 class="section-title">Management</h3><p class="muted">Open and manage your hotels, visa types, flights, transportation and extra services.</p><div class="grid2" style="margin-top:10px"><button class="btn outline" type="button" onclick="showPage('hotels')"><b>Hotel Management</b><span class="muted" style="display:block;margin-top:3px">Hotels, providers, dates and room rates</span></button><button class="btn outline" type="button" onclick="showPage('visa')"><b>Visa Management</b><span class="muted" style="display:block;margin-top:3px">Visa types, durations and prices</span></button><button class="btn outline" type="button" onclick="showPage('flights')"><b>Flight Management</b><span class="muted" style="display:block;margin-top:3px">Flight and routing details</span></button><button class="btn outline" type="button" onclick="showPage('transport')"><b>Transportation</b><span class="muted" style="display:block;margin-top:3px">Saudi transport services and rates</span></button><button class="btn outline" type="button" onclick="showPage('extras')"><b>Extra Services</b><span class="muted" style="display:block;margin-top:3px">Optional services and prices</span></button><button class="btn outline" type="button" onclick="openAirlineManagement()"><b>Airline Management</b><span class="muted" style="display:block;margin-top:3px">Airline names and IATA codes</span></button></div></div><div class="card" id="airlineSettingsCard" style="display:none"><div class="pagehead" style="margin-bottom:8px"><div><h3 class="section-title" style="margin:0">Airline Management</h3><div class="muted">Manage airline names and IATA codes used throughout New Booking.</div></div><div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn outline" type="button" onclick="closeAirlineManagement()">← Back to Settings</button><button id="addAirlineBtn" class="btn gold" onclick="addAirline()">+ Add Airline</button></div></div><div id="airlineManager" style="margin-top:10px"></div></div><div class="card adminOnly" id="appearanceSettingsCard"><h3 class="section-title">Appearance</h3><p class="muted">Customize the shared application colors for Day and Night mode. Text colors are calculated automatically for contrast.</p><div class="appearance-tabs"><button id="appearanceDayTab" class="btn outline" type="button" onclick="selectAppearanceMode('day')">Day Mode</button><button id="appearanceNightTab" class="btn outline" type="button" onclick="selectAppearanceMode('night')">Night Mode</button></div><div id="appearanceEditor"></div></div><div class="card" style="text-align:center"><div class="software-version" style="font-size:20px;font-weight:950">V2.0.1</div></div><div class="card"><h3 class="section-title">Contact</h3><div class="grid2"><div><div class="muted">Phone</div><div style="font-size:13px;font-weight:900;color:var(--color-navy);margin-top:4px">0345-0995555</div></div><div><div class="muted">Email</div><div style="font-size:13px;font-weight:900;color:var(--color-navy);margin-top:4px"><a href="mailto:Karvaneasal@gmail.com" style="color:var(--color-navy);text-decoration:none">Karvaneasal@gmail.com</a></div></div></div></div><div class="card"><h3 class="section-title">Exchange Rate</h3><div class="grid2"><div class="field"><label>1 SAR = PKR</label><input id="fxInput" type="number"></div><div style="display:flex;align-items:end"><button class="btn primary" onclick="saveFx()">Save Exchange Rate</button></div></div></div><div class="card"><h3 class="section-title">Recycle Bin</h3><p class="muted">Deleted booking records are kept here until recovered or permanently deleted.</p><div id="recycleBin" style="margin-top:10px"></div></div><div class="card"><h3 class="section-title">Activity Log</h3><p class="muted">Recent application actions for operational auditing. This local log is not a substitute for Supabase audit logging.</p><div id="activityLog" style="margin-top:10px"></div></div><div class="card"><h3 class="section-title">Local Backup</h3><p class="muted">Super Admin can back up company data. A normal user can back up and restore only their own records. Backup files never contain Supabase credentials or passwords.</p><div class="savebar"><button class="btn outline" onclick="exportBackup()">Export Backup</button><button class="btn outline" onclick="document.getElementById('backupFile').click()">Import Backup</button><input id="backupFile" type="file" accept="application/json" style="display:none" onchange="importBackup(event)"></div></div></section>
+<section id="settings" class="page"><div class="pagehead"><div><h1>Settings</h1><p>System settings, management tools, exchange rate and local backup.</p></div></div><div class="card" id="managementSettingsCard"><h3 class="section-title">Management</h3><p class="muted">Open and manage your hotels, visa types, flights, transportation and extra services.</p><div class="grid2" style="margin-top:10px"><button class="btn outline" type="button" onclick="showPage('hotels')"><b>Hotel Management</b><span class="muted" style="display:block;margin-top:3px">Hotels, providers, dates and room rates</span></button><button class="btn outline" type="button" onclick="showPage('visa')"><b>Visa Management</b><span class="muted" style="display:block;margin-top:3px">Visa types, durations and prices</span></button><button class="btn outline" type="button" onclick="showPage('flights')"><b>Flight Management</b><span class="muted" style="display:block;margin-top:3px">Flight and routing details</span></button><button class="btn outline" type="button" onclick="showPage('transport')"><b>Transportation</b><span class="muted" style="display:block;margin-top:3px">Saudi transport services and rates</span></button><button class="btn outline" type="button" onclick="showPage('extras')"><b>Extra Services</b><span class="muted" style="display:block;margin-top:3px">Optional services and prices</span></button></div></div><div class="card adminOnly" id="appearanceSettingsCard"><h3 class="section-title">Appearance</h3><p class="muted">Customize the shared application colors for Day and Night mode. Text colors are calculated automatically for contrast.</p><div class="appearance-tabs"><button id="appearanceDayTab" class="btn outline" type="button" onclick="selectAppearanceMode('day')">Day Mode</button><button id="appearanceNightTab" class="btn outline" type="button" onclick="selectAppearanceMode('night')">Night Mode</button></div><div id="appearanceEditor"></div></div><div class="card" style="text-align:center"><div class="software-version" style="font-size:20px;font-weight:950">A1.0.49</div></div><div class="card"><h3 class="section-title">Contact</h3><div class="grid2"><div><div class="muted">Phone</div><div style="font-size:13px;font-weight:900;color:var(--color-navy);margin-top:4px">0345-0995555</div></div><div><div class="muted">Email</div><div style="font-size:13px;font-weight:900;color:var(--color-navy);margin-top:4px"><a href="mailto:Karvaneasal@gmail.com" style="color:var(--color-navy);text-decoration:none">Karvaneasal@gmail.com</a></div></div></div></div><div class="card"><h3 class="section-title">Exchange Rate</h3><div class="grid2"><div class="field"><label>1 SAR = PKR</label><input id="fxInput" type="number"></div><div style="display:flex;align-items:end"><button class="btn primary" onclick="saveFx()">Save Exchange Rate</button></div></div></div><div class="card"><h3 class="section-title">Recycle Bin</h3><p class="muted">Deleted booking records are kept here until recovered or permanently deleted.</p><div id="recycleBin" style="margin-top:10px"></div></div><div class="card"><h3 class="section-title">Activity Log</h3><p class="muted">Recent application actions for operational auditing. This local log is not a substitute for Supabase audit logging.</p><div id="activityLog" style="margin-top:10px"></div></div><div class="card"><h3 class="section-title">Local Backup</h3><p class="muted">Super Admin can back up company data. A normal user can back up and restore only their own records. Backup files never contain Supabase credentials or passwords.</p><div class="savebar"><button class="btn outline" onclick="exportBackup()">Export Backup</button><button class="btn outline" onclick="document.getElementById('backupFile').click()">Import Backup</button><input id="backupFile" type="file" accept="application/json" style="display:none" onchange="importBackup(event)"></div></div></section>
 <section id="admin" class="page"><div class="pagehead"><div><h1>User Management</h1><p>Manage your account. Super Admin can manage all user accounts.</p></div><button id="addUserMgmtBtn" class="btn gold" style="display:none" onclick="openManagedUserCreate()">+ Create User</button></div><div id="userManagementBody"></div></section>
 <section id="invoicePage" class="page"><div class="pagehead no-print"><div><h1>Booking Invoice</h1><p>Professional booking invoice preview.</p></div><button class="btn gold" onclick="window.print()">Print / Save PDF</button></div><div class="card"><div class="invoice" id="invoice"></div></div></section>
 </main></div>
-<nav class="mobileNav" aria-label="Main navigation">
-<button class="active" onclick="showPage('dashboard',this)" aria-label="Home"><span class="navsvg homeIcon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3.5 10.5 12 3l8.5 7.5v9a1 1 0 0 1-1 1H4.5a1 1 0 0 1-1-1z"/><path d="M9 20.5v-6h6v6"/></svg></span><b>Dashboard</b></button>
-<button data-page="bookingWizard" onclick="newBooking(this)" aria-label="Bookings"><span class="navsvg" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M8 5v3M16 5v3M3 10h18M8 14h3"/></svg></span><b>Bookings</b></button>
 
-<button onclick="showPage('records',this)" aria-label="Records"><span class="navsvg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.5h11a3 3 0 0 1 3 3v12H8a3 3 0 0 1-3-3z"/><path d="M8 4.5v15M11 9h5M11 13h5M11 17h4"/></svg></span><b>Records</b></button>
-<button onclick="showPage('sales',this)" aria-label="Sales"><span class="navsvg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V6M16 20v-9M22 20V3"/><path d="M2.5 20.5h20"/></svg></span><b>Sales</b></button>
-<button onclick="showPage('settings',this)" aria-label="Settings"><span class="navsvg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9.7 3.7h4.6l.7 2.2 2 .9 2.1-1 3.2 3.2-1 2.1.9 2 .8.8v4.6l-2.2.7-.9 2-2.1-1-2 .9-.7 2.2H9.7L9 20.1l-2-.9-2.1 1-3.2-3.2 1-2.1-.9-2-.8-.7V7.6l2.2-.7.9-2 2.1 1 2-.9z"/><circle cx="12" cy="12" r="3.2"/></svg></span><b>Settings</b></button>
-<button id="adminMobileNav" onclick="showPage('admin',this)" aria-label="User"><span class="navsvg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 20 6v5.5c0 4.8-3.2 7.8-8 9.5-4.8-1.7-8-4.7-8-9.5V6z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg></span><b>User</b></button>
-</nav>
 </div>
 <div class="modal" id="modal"><div class="modalbox" id="modalbox"></div></div>
-<!-- V2.0.2 code cleanup: redundant legacy runtime wrappers removed; core handlers remain authoritative. -->
+<!-- Current modern application shell; core handlers retained. -->
 <script>
 const roomTypes=['Sharing','Quint','Quad','Triple','Double','Full Room'];
 const defaultHotels=[["Makkah","Wedam Six","Ibrahim Khalil Road","Shuttle",13,13,13,17,25,50,{"provider":"Gulf","rate_mode":"per_person"}],["Makkah","White Lion","Hijra Road","1100 M",17,17,19,25,38,75,{"provider":"Gulf","rate_mode":"per_person"}],["Makkah","Masarat Khalil / Nada Hijra","Ibrahim Khalil / Hijra Road","750 M",41,null,45,60,90,180,{"provider":"Gulf","rate_mode":"per_person"}],["Makkah","Saif Al Majd","Hijra Road","750 M",43,43,46,62,93,185,{"provider":"Gulf","rate_mode":"per_person"}],["Makkah","Masarat Golden","Ibrahim Khalil Road","550 M",48,48,48,63,95,190,{"provider":"Gulf","rate_mode":"per_person"}],["Makkah","Badar Masa","Ibrahim Khalil Road","550 M",null,57,63,83,125,250,{"provider":"Gulf","rate_mode":"per_person"}],["Makkah","Tara Zahbi (Old-Majd Al Zahabi)","Manshia","400 M",null,null,63,83,125,250,{"provider":"Gulf","rate_mode":"per_person"}],["Madinah","Qadat Al Dyyafah / Afaq Al Masi","Omer Bin Al Khattab Road","Shuttle",27,27,30,40,60,120,{"provider":"Gulf","rate_mode":"per_person"}],["Madinah","Hamouda Al Masi","Masjid Bilal Side","650 M",36,36,40,53,80,160,{"provider":"Gulf","rate_mode":"per_person"}],["Madinah","Hamouda Nebras 1&2 (Old Burj Hakeem)","Masjid Bilal Side","450 M",46,46,50,67,100,200,{"provider":"Gulf","rate_mode":"per_person"}],["Madinah","Mukhtara Diamond","Markazia","120 M",null,null,75,100,150,300,{"provider":"Gulf","rate_mode":"per_person"}],["Madinah","Ansar Golden Tulip","Markazia","100 M",null,null,100,133,200,400,{"provider":"Gulf","rate_mode":"per_person"}],["Makkah","Arafat Zahbi","Umm Al-Moumin Street Kudai","Shuttle Service",null,null,null,null,null,null,{"provider":"Meezab","checkin":"08-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":13,"room":78},{"start":"2026-08-31","end":"2026-11-14","sharing":14,"room":84},{"start":"2026-11-15","end":"2027-01-15","sharing":17,"room":100}]}],["Makkah","Fakhir Al Azizia","Azizia Makkah","Shuttle Service",null,null,null,null,null,null,{"provider":"Meezab","checkin":"21-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":14,"room":70},{"start":"2026-08-31","end":"2026-11-14","sharing":15,"room":75},{"start":"2026-11-15","end":"2027-01-15","sharing":18,"room":85}]}],["Makkah","Snood Mowtan","Ibrahim Khalil Road","Shuttle Service",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":16,"room":80},{"start":"2026-08-31","end":"2026-11-14","sharing":18,"room":90},{"start":"2026-11-15","end":"2027-01-15","sharing":21,"room":95}]}],["Makkah","Qla Ajyad","Ajyad Street","Shuttle Service",null,null,null,null,null,null,{"provider":"Meezab","checkin":"04-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":18,"room":90},{"start":"2026-08-31","end":"2026-11-14","sharing":20,"room":100},{"start":"2026-11-15","end":"2027-01-15","sharing":25,"room":115}]}],["Makkah","Taj Fiddi Hotel","Ajyad Street","700-800 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"08-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":28,"room":140},{"start":"2026-08-31","end":"2026-11-14","sharing":30,"room":150},{"start":"2026-11-15","end":"2027-01-15","sharing":35,"room":160}]}],["Makkah","That Hotel","Misfalah Kubri","800-900 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"08-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":30,"room":150},{"start":"2026-08-31","end":"2026-11-14","sharing":32,"room":160},{"start":"2026-11-15","end":"2027-01-15","sharing":38,"room":175}]}],["Makkah","Al Kiswah Towers","Al Taysir Street","Shuttle Service",null,null,null,null,null,null,{"provider":"Meezab","checkin":"26-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":120},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":130},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":150}]}],["Makkah","Rukan Al Zawia","Ibrahim Khalil Road","700-800 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":40,"room":180},{"start":"2026-08-31","end":"2026-11-14","sharing":42,"room":190},{"start":"2026-11-15","end":"2027-01-15","sharing":46,"room":210}]}],["Makkah","Mella 1","Ibrahim Khalil Road","650-700 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"08-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":190},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":200},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":220}]}],["Makkah","Mella 2","Ibrahim Khalil Road","650-700 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"12-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":42,"room":190},{"start":"2026-08-31","end":"2026-11-14","sharing":44,"room":200},{"start":"2026-11-15","end":"2027-01-15","sharing":49,"room":220}]}],["Makkah","Diwan Al Bait","Ibrahim Khalil Road","500-600 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"10-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":42,"room":190},{"start":"2026-08-31","end":"2026-11-14","sharing":44,"room":200},{"start":"2026-11-15","end":"2027-01-15","sharing":49,"room":220}]}],["Makkah","Saif Al Majd","Al Hajlah Road","650 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"27-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":42,"room":190},{"start":"2026-08-31","end":"2026-11-14","sharing":44,"room":200},{"start":"2026-11-15","end":"2027-01-15","sharing":49,"room":220}]}],["Makkah","Areej Al Zahbi","Al Hijrah Road","450-500 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":44,"room":200},{"start":"2026-08-31","end":"2026-11-14","sharing":48,"room":210},{"start":"2026-11-15","end":"2027-01-15","sharing":53,"room":240}]}],["Makkah","Arfat Golden Rushd","Ibrahim Khalil Road","500 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"06-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":46,"room":210},{"start":"2026-08-31","end":"2026-11-14","sharing":52,"room":230},{"start":"2026-11-15","end":"2027-01-15","sharing":58,"room":260}]}],["Makkah","Badar Al Masa","Ibrahim Khalil Road","600 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":280},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":290},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":310}]}],["Makkah","Shams Al Zahbi","Al Hijrah Road","350-400 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":48,"room":220},{"start":"2026-08-31","end":"2026-11-14","sharing":58,"room":260},{"start":"2026-11-15","end":"2027-01-15","sharing":62,"room":280}]}],["Makkah","Daif Ajyad","Ajyad Street","250-300 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"06-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":325},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":345},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":360}]}],["Makkah","Areej Al Wafa","Ibrahim Khalil Road","250-300 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":300},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":370},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":390}]}],["Makkah","Nawara Shams 3","Ibrahim Khalil Road","250-300 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"28-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":300},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":370},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":390}]}],["Makkah","Lolo Al Falah","Ibrahim Khalil Road","100 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"01-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":450},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":475},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":485}]}],["Makkah","Time Ruba","Al Haj Road","Shuttle Service",null,null,null,null,null,null,{"provider":"Meezab","checkin":"01-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":135},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":185},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":195}]}],["Makkah","Park Inn","Azizia Makkah","Shuttle Service",null,null,null,null,null,null,{"provider":"Meezab","checkin":"01-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":135},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":185},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":195}]}],["Madinah","Hala Taibah","Abdul Aziz Road","Shuttle Service",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":29,"room":130},{"start":"2026-08-31","end":"2026-11-14","sharing":32,"room":150},{"start":"2026-11-15","end":"2027-01-15","sharing":35,"room":160}]}],["Madinah","Manazil Marjan","Qurban Nazir Road","Shuttle Service",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":31,"room":140},{"start":"2026-08-31","end":"2026-11-14","sharing":33,"room":150},{"start":"2026-11-15","end":"2027-01-15","sharing":37,"room":170}]}],["Madinah","Jodh Marjan","Qurban Nazir Road","800-900 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":34,"room":155},{"start":"2026-08-31","end":"2026-11-14","sharing":36,"room":165},{"start":"2026-11-15","end":"2027-01-15","sharing":40,"room":180}]}],["Madinah","Diyar Al Safa (Old Safa Center)","Masjid Bilal Side","700 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"20-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":36,"room":165},{"start":"2026-08-31","end":"2026-11-14","sharing":37,"room":170},{"start":"2026-11-15","end":"2027-01-15","sharing":42,"room":190}]}],["Madinah","Wahat Al Shark","Masjid Bilal Side","700 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":36,"room":165},{"start":"2026-08-31","end":"2026-11-14","sharing":37,"room":170},{"start":"2026-11-15","end":"2027-01-15","sharing":42,"room":190}]}],["Madinah","Essa Karim Hotel","Albaik Opposite Side","600 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":37,"room":170},{"start":"2026-08-31","end":"2026-11-14","sharing":38,"room":175},{"start":"2026-11-15","end":"2027-01-15","sharing":43,"room":195}]}],["Madinah","Anwar Al Awali","Albaik Opposite Side","550 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":39,"room":180},{"start":"2026-08-31","end":"2026-11-14","sharing":42,"room":190},{"start":"2026-11-15","end":"2027-01-15","sharing":47,"room":210}]}],["Madinah","Manazil Majd","Masjid Bilal Side","400-500 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"26-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":41,"room":185},{"start":"2026-08-31","end":"2026-11-14","sharing":42,"room":190},{"start":"2026-11-15","end":"2027-01-15","sharing":47,"room":210}]}],["Madinah","Nuzul Waha Madain","Masjid Bilal Side","400-500 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"26-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":44,"room":190},{"start":"2026-08-31","end":"2026-11-14","sharing":45,"room":200},{"start":"2026-11-15","end":"2027-01-15","sharing":49,"room":220}]}],["Madinah","Najoom Al Madinah","Al Zahida Area Quba Road","450-500 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"30-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":48,"room":190},{"start":"2026-08-31","end":"2026-11-14","sharing":50,"room":225},{"start":"2026-11-15","end":"2027-01-15","sharing":54,"room":245}]}],["Madinah","Burj Muwaddah","Bab Al Salam Road","300-350 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"15-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":270},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":290},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":310}]}],["Madinah","Burj Mukhtara","Bab Al Salam Road","300-350 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"26-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":270},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":290},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":310}]}],["Madinah","Ergwan Al Madinah","South Markazia","200-250 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"16-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":60,"room":300},{"start":"2026-08-31","end":"2026-11-14","sharing":68,"room":340},{"start":"2026-11-15","end":"2027-01-15","sharing":72,"room":360}]}],["Madinah","Taif Nebras","South Markazia","200-250 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"01-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":320},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":340},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":370}]}],["Madinah","Ergwan Al Salam","South Markazia","200-250 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"01-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":350},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":370},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":395}]}],["Madinah","Marjan Golden","Garbia Side","100 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"26-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":350},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":380},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":400}]}],["Madinah","Rama Al Madinah","South Markazia","100 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"26-Jun","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":350},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":380},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":400}]}],["Madinah","Safwat Al Madinah","North Markazia","100 MTR",null,null,null,null,null,null,{"provider":"Meezab","checkin":"01-Jul","periods":[{"start":"2026-01-01","end":"2026-08-30","sharing":null,"room":400},{"start":"2026-08-31","end":"2026-11-14","sharing":null,"room":450},{"start":"2026-11-15","end":"2027-01-15","sharing":null,"room":470}]}]];
 let hotels=(()=>{
-  let raw=localStorage.getItem('keaHotelsV201')||null;
+  let raw=localStorage.getItem('keaHotelsV300')||null;
   let parsed=null;
   try{parsed=raw?JSON.parse(raw):null}catch(e){parsed=null}
   if(!Array.isArray(parsed)||parsed.length<52)return JSON.parse(JSON.stringify(defaultHotels));
@@ -342,16 +244,16 @@ function normalizeHotelProviders(list){
 hotels=normalizeHotelProviders(hotels).map(normalizeHotelPeriods);
 /* Ensure an older 13-hotel local cache can never suppress the shipped 52-hotel catalog. */
 if(hotels.length<defaultHotels.length)hotels=JSON.parse(JSON.stringify(defaultHotels));
-localStorage.setItem('keaHotelsV201',JSON.stringify(hotels));
+localStorage.setItem('keaHotelsV300',JSON.stringify(hotels));
 let hotelProviderFilter='All';
 const defaultVisaTypes=[{name:'Umrah Visa',adult:[615,665,690,715,765],child:615,infant:500,durations:[{days:15,pkr:0},{days:21,pkr:0},{days:30,pkr:0},{days:90,pkr:0}],active:true},{name:'Only Visa',adult:[615,665,690,715,765],child:615,infant:500,durations:[{days:15,pkr:40000},{days:21,pkr:41000},{days:28,pkr:42000},{days:75,pkr:45000}],active:true},{name:'Visit Visa',adult:[0,0,0,0,0],child:0,infant:0,durations:[{days:30,pkr:0}],active:true},{name:'Work Visa',adult:[0,0,0,0,0],child:0,infant:0,durations:[{days:30,pkr:0}],active:true},{name:'Study Visa',adult:[0,0,0,0,0],child:0,infant:0,durations:[{days:30,pkr:0}],active:true}];
-let visaTypes=JSON.parse(localStorage.getItem('keaVisaV201')||'null')||JSON.parse(JSON.stringify(defaultVisaTypes));
-(function ensureVisaTypes(){visaTypes.forEach(v=>{v.adult=Array.isArray(v.adult)?[0,1,2,3,4].map(i=>Number(v.adult[i]||0)):[0,0,0,0,0];v.child=Number(v.adult?.[4]||v.child||0);v.infant=500;v.durations=Array.isArray(v.durations)?v.durations.map(d=>({days:Number(d.days)||0,pkr:Number(d.pkr)||0})).filter(d=>d.days>0):[];if(!v.durations.length)v.durations=[{days:30,pkr:0}];if(String(v.name||'').trim().toLowerCase()==='umrah visa'){const umrahDays=[15,21,30,90];v.durations=umrahDays.map(days=>{const old=v.durations.find(d=>Number(d.days)===days);return {days,pkr:0};});}if(!Array.isArray(v.adultRules)||!v.adultRules.length){v.adultRules=[{label:'05–49',min:5,max:49,price:Number(v.adult[0]||0),active:true},{label:'04',min:4,max:4,price:Number(v.adult[1]||0),active:true},{label:'03',min:3,max:3,price:Number(v.adult[2]||0),active:true},{label:'02',min:2,max:2,price:Number(v.adult[3]||0),active:true},{label:'01',min:1,max:1,price:Number(v.adult[4]||0),active:true}];}else{v.adultRules=v.adultRules.map(r=>({label:String(r.label||''),min:Number(r.min)||1,max:Number(r.max)||Number(r.min)||1,price:Number(r.price)||0,active:r.active!==false}));}if(v.active===undefined)v.active=true;});localStorage.setItem('keaVisaV201',JSON.stringify(visaTypes));})();
+let visaTypes=JSON.parse(localStorage.getItem('keaVisaV300')||'null')||JSON.parse(JSON.stringify(defaultVisaTypes));
+(function ensureVisaTypes(){visaTypes.forEach(v=>{v.adult=Array.isArray(v.adult)?[0,1,2,3,4].map(i=>Number(v.adult[i]||0)):[0,0,0,0,0];v.child=Number(v.adult?.[4]||v.child||0);v.infant=500;v.durations=Array.isArray(v.durations)?v.durations.map(d=>({days:Number(d.days)||0,pkr:Number(d.pkr)||0})).filter(d=>d.days>0):[];if(!v.durations.length)v.durations=[{days:30,pkr:0}];if(String(v.name||'').trim().toLowerCase()==='umrah visa'){const umrahDays=[15,21,30,90];v.durations=umrahDays.map(days=>{const old=v.durations.find(d=>Number(d.days)===days);return {days,pkr:0};});}if(!Array.isArray(v.adultRules)||!v.adultRules.length){v.adultRules=[{label:'05–49',min:5,max:49,price:Number(v.adult[0]||0),active:true},{label:'04',min:4,max:4,price:Number(v.adult[1]||0),active:true},{label:'03',min:3,max:3,price:Number(v.adult[2]||0),active:true},{label:'02',min:2,max:2,price:Number(v.adult[3]||0),active:true},{label:'01',min:1,max:1,price:Number(v.adult[4]||0),active:true}];}else{v.adultRules=v.adultRules.map(r=>({label:String(r.label||''),min:Number(r.min)||1,max:Number(r.max)||Number(r.min)||1,price:Number(r.price)||0,active:r.active!==false}));}if(v.active===undefined)v.active=true;});localStorage.setItem('keaVisaV300',JSON.stringify(visaTypes));})();
 
-let transport=JSON.parse(localStorage.getItem('keaTransportV201')||'null')||[{name:'Airport Transfer — Private Sedan',price:0,unit:'per vehicle',active:true},{name:'Makkah ↔ Madinah — Bus',price:0,unit:'per vehicle',active:true}];
-let extras=JSON.parse(localStorage.getItem('keaExtrasV201')||'null')||[{name:'Ziyarah (Makkah)',price:0,unit:'per person',active:true},{name:'Ziyarah (Madinah)',price:0,unit:'per person',active:true},{name:'SIM Card',price:0,unit:'per SIM',active:true}];
-var fx=Number(localStorage.getItem('keaFxV201')||75),quotes=[],q=null,step=0,hotelCity='Makkah';
-const AUTH_KEY='keaUsersV201',SESSION_KEY='keaSessionV201';
+let transport=JSON.parse(localStorage.getItem('keaTransportV300')||'null')||[{name:'Airport Transfer — Private Sedan',price:0,unit:'per vehicle',active:true},{name:'Makkah ↔ Madinah — Bus',price:0,unit:'per vehicle',active:true}];
+let extras=JSON.parse(localStorage.getItem('keaExtrasV300')||'null')||[{name:'Ziyarah (Makkah)',price:0,unit:'per person',active:true},{name:'Ziyarah (Madinah)',price:0,unit:'per person',active:true},{name:'SIM Card',price:0,unit:'per SIM',active:true}];
+var fx=Number(localStorage.getItem('keaFxV300')||75),quotes=[],q=null,step=0,hotelCity='Makkah';
+const AUTH_KEY='keaUsersV300',SESSION_KEY='keaSessionV300';
 const SECURITY_QUESTIONS=[
   'What city were you born in?',
   'What is your mother’s maiden name?',
@@ -369,11 +271,11 @@ if(!users){
   if(!users.some(u=>u.username.toLowerCase()==='umar')){users.push({username:'Umar',email:'umar@karvan-e-asal.local',firstName:'Umar',lastName:'',name:'Umar',contact:'',agency:'Karvan e Asal',address:'',role:'superadmin',active:true,passHash:'f21b65d0d8d1636ed42c50658ad9170de8e8b3404f50f48a21ea7a3b23866999',securityQuestion:'',securityAnswerHash:'',createdAt:new Date().toISOString()});changed=true;} 
   if(changed||users.length) localStorage.setItem(AUTH_KEY,JSON.stringify(users));
 }
-if(!localStorage.getItem('keaQuotesV201_Umar')&&localStorage.getItem('keaQuotesV201_')){localStorage.setItem('keaQuotesV201_Umar',localStorage.getItem('keaQuotesV201_'));}
+if(!localStorage.getItem('keaQuotesV300_Umar')&&localStorage.getItem('keaQuotesV300_')){localStorage.setItem('keaQuotesV300_Umar',localStorage.getItem('keaQuotesV300_'));}
 var currentUser=null;
 function hashText(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(b=>Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join(''));}
 function stableOwnerId(){return String(currentUser?.id||'').trim();}
-function quoteKey(){return 'keaQuotesV201_'+(stableOwnerId()||String(currentUser?.username||'guest').toLowerCase());}
+function quoteKey(){return 'keaQuotesV300_'+(stableOwnerId()||String(currentUser?.username||'guest').toLowerCase());}
 
 function sessionUser(){let u=sessionStorage.getItem(SESSION_KEY);return u?users.find(x=>x.username.toLowerCase()===u.toLowerCase()&&x.active):null;}
 function showAuthError(msg){let e=$('authError');e.textContent=msg||'';e.style.display=msg?'block':'none';}
@@ -382,9 +284,9 @@ function showAuthPanel(panel){['login','register','forgot'].forEach(x=>$(x+'Pane
 async function loadResetQuestionFromEmail(){try{const email=$('resetEmail').value.trim().toLowerCase();if(!email)return;const r=await sb().rpc('get_password_reset_question',{p_email:email});if(r?.error||!r?.data)return;const q=String(r.data);const sel=$('resetQuestion');if([...sel.options].some(o=>o.value===q))sel.value=q;}catch(e){}}
 function usernameFromEmail(email){let base=email.split('@')[0].toLowerCase().replace(/[^a-z0-9._-]/g,'');if(base.length<3)base='user'+base;let u=base,i=2;while(users.some(x=>x.username.toLowerCase()===u.toLowerCase()))u=base+(i++);return u;}
 function logoutUser(){try{if(window.KARVAN_ONLINE?.enabled)window.KARVAN_ONLINE.sb.auth.signOut().catch(e=>console.warn('[Karvan] Online sign-out failed',e));}catch(e){}sessionStorage.removeItem(SESSION_KEY);currentUser=null;quotes=[];q=null;$('appRoot').style.display='none';$('authScreen').style.display='flex';$('loginPass').value='';$('authError').style.display='none';}
-function coreApplyUserUI(){ $('topUserName').textContent=currentUser?.name||currentUser?.username||'User';$('topUserRole').textContent=' • '+(currentUser?.role==='superadmin'?'Super Admin':currentUser?.role==='admin'?'Administrator':'User');let admin=isSuperAdmin();document.querySelectorAll('.adminOnly').forEach(x=>x.style.display=admin?'':'none');var un=document.getElementById('adminNav'),um=document.getElementById('adminMobileNav');if(un)un.style.display='';if(um)um.style.display='';if(typeof window.keaV201ApplyFinalPermissions==='function')window.keaV201ApplyFinalPermissions();}
+function coreApplyUserUI(){ $('topUserName').textContent=currentUser?.name||currentUser?.username||'User';$('topUserRole').textContent=' • '+(currentUser?.role==='superadmin'?'Super Admin':currentUser?.role==='admin'?'Administrator':'User');let admin=isSuperAdmin();document.querySelectorAll('.adminOnly').forEach(x=>x.style.display=admin?'':'none');var un=document.getElementById('adminNav');if(un)un.style.display='';if(typeof window.keaApplyFinalPermissions==='function')window.keaApplyFinalPermissions();}
 const airports=[['Islamabad','ISB','Pakistan','PK'],['Lahore','LHE','Pakistan','PK'],['Rawalpindi','RWP','Pakistan','PK'],['Sialkot','SKT','Pakistan','PK'],['Karachi','KHI','Pakistan','PK'],['Multan','MUX','Pakistan','PK'],['Jeddah','JED','Saudi Arabia','SA'],['Madinah','MED','Saudi Arabia','SA'],['Riyadh','RUH','Saudi Arabia','SA'],['Dubai','DXB','United Arab Emirates','AE'],['Istanbul','IST','Türkiye','TR'],['Doha','DOH','Qatar','QA'],['Abu Dhabi','AUH','United Arab Emirates','AE'],['Muscat','MCT','Oman','OM'],['Bahrain','BAH','Bahrain','BH']];
-let airlines=JSON.parse(localStorage.getItem('keaAirlinesV201')||'null')||[
+let airlines=JSON.parse(localStorage.getItem('keaAirlinesV300')||'null')||[
 ['Pakistan International Airlines','PIA','PK'],['Airblue','Airblue','PA'],['AirSial','AirSial','PF'],['Fly Jinnah','Fly Jinnah','9P'],['SereneAir','SereneAir','ER'],['Saudia','Saudia','SV'],['flynas','flynas','XY'],['flyadeal','flyadeal','F3'],['Emirates','Emirates','EK'],['flydubai','flydubai','FZ'],['Air Arabia','Air Arabia','G9'],['Etihad Airways','Etihad','EY'],['Qatar Airways','Qatar','QR'],['SalamAir','SalamAir','OV'],['Turkish Airlines','Turkish','TK'],['Pegasus Airlines','Pegasus','PC'],['Gulf Air','Gulf Air','GF'],['Kuwait Airways','Kuwait Airways','KU'],['Oman Air','Oman Air','WY'],['Jazeera Airways','Jazeera','J9'],['Azerbaijan Airlines','Azerbaijan','J2'],['Uzbekistan Airways','Uzbekistan','HY'],['Batik Air Malaysia','Batik Air','OD'],['Royal Jordanian','Royal Jordanian','RJ'],['EgyptAir','EgyptAir','MS'],['SriLankan Airlines','SriLankan','UL']
 ];
 function airlineOpts(v){return '<option value="">Select airline</option>'+airlines.map(a=>`<option value="${esc(a[0])}" ${v===a[0]?'selected':''}>${esc(a[0])} (${a[2]})</option>`).join('')}
@@ -392,11 +294,8 @@ function airlineOpts(v){return '<option value="">Select airline</option>'+airlin
 const stepNames=['Customer','Passengers','Journey','Hotels','Visa','Flights','Transport','Extras'];
 function $(id){return document.getElementById(id)} function sar(x){return 'SAR '+Number(x||0).toFixed(2)} function pkr(x){return 'PKR '+Math.round(Number(x||0)).toLocaleString()} function esc(s){return String(s??'').replace(/[&<>'"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[m]))}
 function coreShowPage(id,btn){
-  if(id!=='settings' && typeof closeAirlineManagement==='function' && document.getElementById('airlineSettingsCard')?.style.display==='block'){
-    closeAirlineManagement();
-  }
-  if(!currentUser && id!=='dashboard' && id!=='login'){alert('Please sign in first.');return;}if(currentUser?.active===false){alert('Your account is disabled. Please contact the Super Admin.');logoutUser();return;}if(!['hotels','visa','flights','transport','extras'].includes(id)&&!hasPagePermission(id)){alert('You do not have permission to open this page.');return;}if(['hotels','visa','flights','transport','extras'].includes(id)&&!isSuperAdmin()){alert('Only Super Admin can access management settings.');return;}document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.navitem,.mobileNav button').forEach(b=>b.classList.remove('active'));let activeBtn=btn||document.querySelector('.mobileNav button[data-page="'+id+'"]');if(!activeBtn){let target=id==='bookingWizard'?'bookings':id==='quotes'?'bookings':id==='sales'?'sales':id==='records'?'records':id==='summary'?'records':id==='invoicePage'?'records':id==='voucher'?'voucher':id;let buttons=[...document.querySelectorAll('.navitem,.mobileNav button')];activeBtn=buttons.find(x=>(x.getAttribute('aria-label')||'').toLowerCase()===target)||buttons.find(x=>x.textContent.toLowerCase().includes(target));}if(activeBtn)activeBtn.classList.add('active');if(id==='dashboard'){dashboard();}if(id==='quotes')renderSavedFiles('voucher');if(id==='records')renderRecords('invoice');if(id==='sales')renderSales();if(id==='summary')renderSummary();if(id==='hotels')renderHotels();if(id==='visa')renderVisa();if(id==='flights')renderFlightManager();if(id==='transport')renderSimple('transport');if(id==='extras')renderSimple('extras');if(id==='settings'){
-  if(typeof closeAirlineManagement==='function') closeAirlineManagement();
+    if(!currentUser && id!=='dashboard' && id!=='login'){alert('Please sign in first.');return;}if(currentUser?.active===false){alert('Your account is disabled. Please contact the Super Admin.');logoutUser();return;}if(!['hotels','visa','flights','transport','extras'].includes(id)&&!hasPagePermission(id)){alert('You do not have permission to open this page.');return;}if(['hotels','visa','flights','transport','extras'].includes(id)&&!isSuperAdmin()){alert('Only Super Admin can access management settings.');return;}document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));$(id).classList.add('active');document.querySelectorAll('.navitem').forEach(b=>b.classList.remove('active'));
+  if(typeof window.toggleMobileMenu==='function')window.toggleMobileMenu(false);const navTarget=id==='bookingWizard'||id==='quotes'?'bookingWizard':id==='sales'?'sales':id==='records'||id==='summary'||id==='invoicePage'?'records':id==='voucher'?'bookingWizard':id;document.querySelectorAll('.navitem[data-page="'+navTarget+'"]').forEach(b=>b.classList.add('active'));if(id==='dashboard'){dashboard();if(isSuperAdmin()&&typeof renderAirlines==='function')renderAirlines();}if(id==='quotes')renderSavedFiles('voucher');if(id==='records')renderRecords('invoice');if(id==='sales')renderSales();if(id==='summary')renderSummary();if(id==='hotels')renderHotels();if(id==='visa')renderVisa();if(id==='flights')renderFlightManager();if(id==='transport')renderSimple('transport');if(id==='extras')renderSimple('extras');if(id==='settings'){
   $('fxInput').value=fx;
   const rb=document.getElementById('recycleBin');
   if(rb)rb.innerHTML='<div class="muted">Loading Recycle Bin…</div>';
@@ -406,7 +305,7 @@ function coreShowPage(id,btn){
       new Promise(resolve=>setTimeout(resolve,3000))
     ]).catch(e=>console.warn('[Settings] Recycle Bin load failed',e));
   }
-}if(id==='invoicePage')renderInvoice();if(id==='voucher')renderVoucher();if(id==='admin')renderUserManagement();if(typeof window.syncV201UI==='function')window.syncV201UI()}
+}if(id==='invoicePage')renderInvoice();if(id==='voucher')renderVoucher();if(id==='admin')renderUserManagement();}
 function syncPassengers(){
   const total=q.adults+q.childBed+q.childNoBed+q.infants;
   const old=Array.isArray(q.passengers)?q.passengers:[];
@@ -417,7 +316,7 @@ function passengerRows(){
   syncPassengers();
   return q.passengers.map((p,i)=>`<div class="card" style="box-shadow:none;padding:10px;margin:7px 0;background:var(--surface-2)"><div style="display:flex;justify-content:space-between"><b>Passenger ${i+1} — ${esc(p.type)}</b><span class="badge">${p.bed==='Yes'?'Bed: Yes':'Bed: No'}</span></div><div class="grid" style="margin-top:8px"><div class="field"><label>Mutamer Name</label><input value="${esc(p.name)}" oninput="q.passengers[${i}].name=this.value"></div><div class="field"><label>Gender</label><select onchange="q.passengers[${i}].gender=this.value"><option value="" ${!p.gender?'selected':''}>Select Gender</option><option value="Male" ${p.gender==='Male'?'selected':''}>Male</option><option value="Female" ${p.gender==='Female'?'selected':''}>Female</option><option value="Other" ${p.gender==='Other'?'selected':''}>Other</option></select></div><div class="field"><label>Passport #</label><input value="${esc(p.passport)}" oninput="q.passengers[${i}].passport=this.value"></div><div class="field"><label>MOFA #</label><input value="${esc(p.mofa)}" oninput="q.passengers[${i}].mofa=this.value"></div><div class="field"><label>GRP #</label><input value="${esc(p.grp)}" oninput="q.passengers[${i}].grp=this.value"></div><div class="field"><label>Visa #</label><input value="${esc(p.visaNo)}" oninput="q.passengers[${i}].visaNo=this.value"></div><div class="field"><label>PNR</label><input value="${esc(p.pnr)}" oninput="q.passengers[${i}].pnr=this.value"></div></div></div>`).join('');
 }
-function coreNewBooking(btn){q={bookingDate:new Date().toISOString().slice(0,10),customer:'',contact:'',whatsapp:'',customerProfile:{name:'',phone:'',passportNumber:'',passportExpiry:'',address:''},reference:uniqueRef('KEA'),package:'Umrah 1448-H',visaShirka:'',reservationNo:'',transportCompany:'',transportType:'Company Transport',transportDescription:'',departureCity:'ISB',adults:1,childBed:0,childNoBed:0,infants:0,passengers:[],departure:'',arrival:'',returnDate:'',visa:'Umrah Visa',visaDuration:30,stays:[{city:'Makkah',hotel:'',room:'Sharing',rooms:0,allocationMode:'notAssigned',roomAllocations:[],in:'',out:''},{city:'Madinah',hotel:'',room:'Sharing',rooms:0,allocationMode:'notAssigned',roomAllocations:[],in:'',out:''},{city:'Makkah',hotel:'',room:'Sharing',rooms:0,allocationMode:'notAssigned',roomAllocations:[],in:'',out:''},{city:'Madinah',hotel:'',room:'Sharing',rooms:0,allocationMode:'notAssigned',roomAllocations:[],in:'',out:''}],flights:[{type:'Outbound',from:'ISB',to:'JED',date:'',timeOut:'',timeIn:'',flight:'',airline:'Pakistan International Airlines',via:'Direct'},{type:'Return',from:'JED',to:'ISB',date:'',timeOut:'',timeIn:'',flight:'',airline:'Pakistan International Airlines',via:'Direct'}],tickets:{adult:0,childBed:0,childNoBed:0,infant:0},transport:[],extras:[]};step=-1;const b=btn||document.querySelector('.mobileNav button[aria-label="Bookings"]');showPage('bookingWizard',b);renderWizard()}
+function coreNewBooking(btn){q={bookingDate:new Date().toISOString().slice(0,10),customer:'',contact:'',whatsapp:'',customerProfile:{name:'',phone:'',passportNumber:'',passportExpiry:'',address:''},reference:uniqueRef('KEA'),package:'Umrah 1448-H',visaShirka:'',reservationNo:'',transportCompany:'',transportType:'Company Transport',transportDescription:'',departureCity:'ISB',adults:1,childBed:0,childNoBed:0,infants:0,passengers:[],departure:'',arrival:'',returnDate:'',visa:'Umrah Visa',visaDuration:30,stays:[{city:'Makkah',hotel:'',room:'Sharing',rooms:0,allocationMode:'notAssigned',roomAllocations:[],in:'',out:''},{city:'Madinah',hotel:'',room:'Sharing',rooms:0,allocationMode:'notAssigned',roomAllocations:[],in:'',out:''},{city:'Makkah',hotel:'',room:'Sharing',rooms:0,allocationMode:'notAssigned',roomAllocations:[],in:'',out:''},{city:'Madinah',hotel:'',room:'Sharing',rooms:0,allocationMode:'notAssigned',roomAllocations:[],in:'',out:''}],flights:[{type:'Outbound',from:'ISB',to:'JED',date:'',timeOut:'',timeIn:'',flight:'',airline:'Pakistan International Airlines',via:'Direct'},{type:'Return',from:'JED',to:'ISB',date:'',timeOut:'',timeIn:'',flight:'',airline:'Pakistan International Airlines',via:'Direct'}],tickets:{adult:0,childBed:0,childNoBed:0,infant:0},transport:[],extras:[]};step=0;const b=btn||document.querySelector('.navitem[data-page="bookingWizard"]');showPage('bookingWizard',b);renderWizard()}
 function startFullBooking(){step=0;showPage('bookingWizard');renderWizard()}
 function appIcon(name){const p={customer:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20c.7-3.5 3-5.5 6.5-5.5s5.8 2 6.5 5.5"/></svg>',passengers:'<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="16.5" cy="9" r="2.5"/><path d="M3.8 20c.6-3.5 2.5-5.4 5.2-5.4s4.6 1.9 5.2 5.4"/><path d="M14 15.5c2.9-.2 4.9 1.3 5.8 4.5"/></svg>',journey:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19 19 5"/><path d="M8 5h11v11"/><circle cx="5" cy="19" r="2"/></svg>',hotel:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V6l8-3 8 3v14"/><path d="M7 20v-7h10v7M7 9h2M15 9h2M7 12h2M15 12h2"/></svg>',visa:'<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M13 8h4M13 11h4M7 15h10M7 18h7"/></svg>',flight:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 13h7l3-8 2 .8-1.2 7.2H21l-2 2h-6.2l1.2 5.2-2 .8-3-6H3z"/></svg>',transport:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 16V9l2-3h10l2 3v7"/><path d="M5 11h14M7 18h3M14 18h3"/><circle cx="7.5" cy="16.5" r="1.5"/><circle cx="16.5" cy="16.5" r="1.5"/></svg>',extras:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14v14H5z"/><path d="M8 7V5h8v2M9 11h6M9 15h6"/></svg>',ticket:'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7a2 2 0 0 0 0 4v2a2 2 0 0 0 0 4h16v-4a2 2 0 0 0 0-4V7z"/><path d="M12 8v8"/></svg>'};return p[name]||p.ticket}
 function renderSteps(){const icons=['customer','passengers','journey','hotel','visa','flight','transport','extras']; $('steps').innerHTML=stepNames.map((x,i)=>`<button type="button" class="step ${i===step?'active':''}" onclick="goBookingStep(${i})"><span class="stepicon">${appIcon(icons[i])}</span><span>${i+1}. ${x}</span></button>`).join('') }
@@ -425,7 +324,7 @@ function normalizeBooking(){if(!q)return;q.stays=(Array.isArray(q.stays)?q.stays
 function goBookingStep(i){
   if(i<0||i>7)return;
   if(i>step && step===3){
-    const check=window.keaV201ValidateHotelBooking?.();
+    const check=window.keaValidateHotelBooking?.();
     if(check && !check.valid){
       alert(check.message);
       if(check.index!==undefined){setTimeout(()=>document.getElementById('stayAllocStatus'+check.index)?.scrollIntoView({behavior:'smooth',block:'center'}),50);}
@@ -443,7 +342,7 @@ else if(step===1)w.innerHTML=adminBar+`<h3 class="section-title">Passengers & Vo
 else if(step===2)w.innerHTML=adminBar+`<h3 class="section-title">Journey Dates</h3><div class="grid"><div class="field"><label>Departure from Pakistan</label><input type="date" value="${q.departure}" onchange="q.departure=this.value"></div><div class="field"><label>Arrival in KSA</label><input type="date" value="${q.arrival}" onchange="q.arrival=this.value"></div><div class="field"><label>Return from KSA</label><input type="date" value="${q.returnDate}" onchange="q.returnDate=this.value"></div></div><div class="metrics" style="margin-top:12px"><div class="metric"><div class="k">Makkah Nights</div><div class="v">${cityNights('Makkah')}</div></div><div class="metric"><div class="k">Madinah Nights</div><div class="v">${cityNights('Madinah')}</div></div></div>${nav()}`;
 else if(step===3)w.innerHTML=adminBar+`<h3 class="section-title">Hotel Selection</h3><div class="muted">Four stays are supported: Makkah → Madinah → Makkah → Madinah.</div>${q.stays.map((s,i)=>stayHTML(s,i)).join('')}${nav()}`;
 else if(step===4)w.innerHTML=adminBar+visaStep()+nav();
-else if(step===5)w.innerHTML=adminBar+`<h3 class="section-title">Flight Details</h3>${q.flights.map((f,i)=>flightHTML(f,i)).join('')}<button class="btn outline" onclick="q.flights.push({type:'Transit',from:'DXB',to:'JED',date:'',timeOut:'',timeIn:'',flight:'',airline:'',via:'Other'});renderWizard()">+ Add Flight Leg</button><div class="card" style="box-shadow:none;padding:10px;margin-top:10px;background:var(--surface-2)"><div class="grid"><div class="field"><label>Adult Ticket PKR</label><input type="number" value="${q.tickets.adult}" oninput="q.tickets.adult=+this.value||0"></div><div class="field"><label>Child With Bed PKR</label><input type="number" value="${q.tickets.childBed}" oninput="q.tickets.childBed=+this.value||0"></div><div class="field"><label>Child Without Bed PKR</label><input type="number" value="${q.tickets.childNoBed}" oninput="q.tickets.childNoBed=+this.value||0"></div><div class="field"><label>Infant Ticket PKR</label><input type="number" value="${q.tickets.infant}" oninput="q.tickets.infant=+this.value||0"></div></div></div>${nav()}`;
+else if(step===5)w.innerHTML=adminBar+`<h3 class="section-title">Flight Details</h3>${q.flights.map((f,i)=>flightHTML(f,i)).join('')}<button class="btn outline" onclick="q.flights.push({type:'Transit',from:'',to:'',date:'',timeOut:'',timeIn:'',flight:'',airline:'',via:'Other'});renderWizard()">+ Add Flight Leg</button><div class="card" style="box-shadow:none;padding:10px;margin-top:10px;background:var(--surface-2)"><div class="grid"><div class="field"><label>Adult Ticket PKR</label><input type="number" value="${q.tickets.adult}" oninput="q.tickets.adult=+this.value||0"></div><div class="field"><label>Child With Bed PKR</label><input type="number" value="${q.tickets.childBed}" oninput="q.tickets.childBed=+this.value||0"></div><div class="field"><label>Child Without Bed PKR</label><input type="number" value="${q.tickets.childNoBed}" oninput="q.tickets.childNoBed=+this.value||0"></div><div class="field"><label>Infant Ticket PKR</label><input type="number" value="${q.tickets.infant}" oninput="q.tickets.infant=+this.value||0"></div></div></div>${nav()}`;
 else if(step===6)w.innerHTML=adminBar+`<h3 class="section-title">Transportation & Voucher Details</h3><div class="grid"><div class="field"><label>Transport Company</label><input value="${esc(q.transportCompany)}" oninput="q.transportCompany=this.value"></div><div class="field"><label>Transport Type</label><select onchange="q.transportType=this.value"><option ${q.transportType==='Company Transport'?'selected':''}>Company Transport</option><option ${q.transportType==='Self Transport'?'selected':''}>Self Transport</option><option ${q.transportType==='Private Transport'?'selected':''}>Private Transport</option></select></div><div class="field" style="grid-column:span 2"><label>Description</label><input value="${esc(q.transportDescription)}" oninput="q.transportDescription=this.value"></div></div>${q.transport.map((x,i)=>serviceRow(x,i,'transport')).join('')}<button class="btn outline" onclick="q.transport.push({name:transport[0]?.name||'',qty:1});renderWizard()">+ Add Transport</button>${nav()}`;
 else if(step===7)w.innerHTML=adminBar+`<h3 class="section-title">Extras / Services</h3>${extras.map(x=>`<label style="display:block;padding:9px;border:1px solid var(--border);border-radius:9px;margin:7px 0;font-size:11px"><input type="checkbox" style="width:auto;min-height:0" ${q.extras.includes(x.name)?'checked':''} onchange="toggleExtra('${esc(x.name)}',this.checked)"> ${esc(x.name)} <span class="muted">(${sar(x.price)} ${esc(x.unit)})</span></label>`).join('')}<h3 class="section-title" style="margin-top:14px">Payment & Booking Status</h3><div class="grid2"><div class="field"><label>Amount Paid (SAR)</label><input id="paymentAmountPaid" type="number" min="0" step="0.01" value="${Number(q.amount_paid||0)}" oninput="q.amount_paid=Math.max(0,Number(this.value)||0);normalizePayment(q)" onchange="normalizePayment(q);renderWizard()"></div><div class="field"><label>Payment Status</label><select id="paymentStatus" disabled><option>${esc(q.payment_status||'unpaid')}</option></select></div><div class="field"><label>Amount Due (SAR)</label><input value="${Number(q.amount_due||0).toFixed(2)}" readonly></div><div class="field"><label>Booking Status</label><select onchange="try{setQuoteStatus(q,this.value);renderWizard()}catch(e){alert(e.message);renderWizard()}"><option value="draft" ${q.status==='draft'?'selected':''}>Draft</option><option value="confirmed" ${q.status==='confirmed'?'selected':''}>Confirmed</option><option value="ongoing" ${q.status==='ongoing'?'selected':''}>Ongoing</option><option value="completed" ${q.status==='completed'?'selected':''}>Completed</option><option value="cancelled" ${q.status==='cancelled'?'selected':''}>Cancelled</option></select></div></div><div class="notice" style="margin-top:10px">Payment status is derived from Amount Paid and the calculated total. Booking status follows the controlled lifecycle.</div>${nav()}`;}
 function visaStep(){
@@ -474,7 +373,7 @@ function flightHTML(f,i){
     <div class="stayhead"><b>Flight Leg ${i+1}</b><button type="button" class="btn danger" onclick="removeFlight(${i})">Remove</button></div>
     <div class="grid" style="margin-top:9px">
       <div class="field"><label>Flight Type</label><select onchange="q.flights[${i}].type=this.value;renderWizard()">
-        ${['Outbound','Return','Transit','Transit Return'].map(x=>`<option value="${x}" ${type===x?'selected':''}>${x}</option>`).join('')}
+        ${['Outbound','Transit','Return'].map(x=>`<option value="${x}" ${type===x?'selected':''}>${x}</option>`).join('')}
       </select></div>
       <div class="field"><label>Airline</label><select onchange="q.flights[${i}].airline=this.value">${airlineOpts(f.airline)}</select></div>
       <div class="field"><label>Flight #</label><input value="${esc(f.flight||'')}" placeholder="e.g. PK-739" oninput="q.flights[${i}].flight=this.value"></div>
@@ -622,10 +521,10 @@ function renderHotels(btn){
   const escCell=v=>esc(v==null?'':String(v));
   host.innerHTML=providers.map(provider=>{
     const rows=cityRows.filter(h=>hotelProvider(h)===provider);
-    const maxPeriods=Math.max(1,...rows.map(h=>hotelPeriods(keaV201NormalizeHotelPeriods(h)).length));
+    const maxPeriods=Math.max(1,...rows.map(h=>hotelPeriods(keaNormalizeHotelPeriods(h)).length));
     const periodHeads=Array.from({length:maxPeriods},(_,pi)=>`<th colspan="8" style="text-align:left;min-width:520px">Date Range ${pi+1}</th>`).join('');
     const subHeads=Array.from({length:maxPeriods},()=>`<th>Date From</th><th>Date To</th><th>Sharing</th><th>Double</th><th>Triple</th><th>Quad</th><th>Quint</th><th>Full</th>`).join('');
-    const body=rows.length?rows.map(h=>{const ps=keaV201NormalizeHotelPeriods(h);const cells=Array.from({length:maxPeriods},(_,pi)=>{const p=ps[pi]||{};return `<td>${escCell(p.start)}</td><td>${escCell(p.end)}</td><td>${p.sharing==null?'N/A':p.sharing}</td><td>${p.double==null?'N/A':p.double}</td><td>${p.triple==null?'N/A':p.triple}</td><td>${p.quad==null?'N/A':p.quad}</td><td>${p.quint==null?'N/A':p.quint}</td><td>${p.fullRoom==null?'N/A':p.fullRoom}</td>`}).join('');return `<tr><td><strong>${escCell(h[1])}</strong></td><td>${escCell(h[2])}</td><td>${escCell(h[3])}</td>${cells}<td><button class="btn outline" onclick="openHotelModal(${hotels.indexOf(h)})">Edit</button> ${canEdit?`<button class="btn danger" onclick="deleteHotel(${hotels.indexOf(h)})">Delete</button>`:''}</td></tr>`}).join(''):`<tr><td colspan="${4+maxPeriods*8}" class="muted">No ${providerLabel(provider)} hotels configured for ${hotelCity}.</td></tr>`;
+    const body=rows.length?rows.map(h=>{const ps=keaNormalizeHotelPeriods(h);const cells=Array.from({length:maxPeriods},(_,pi)=>{const p=ps[pi]||{};return `<td>${escCell(p.start)}</td><td>${escCell(p.end)}</td><td>${p.sharing==null?'N/A':p.sharing}</td><td>${p.double==null?'N/A':p.double}</td><td>${p.triple==null?'N/A':p.triple}</td><td>${p.quad==null?'N/A':p.quad}</td><td>${p.quint==null?'N/A':p.quint}</td><td>${p.fullRoom==null?'N/A':p.fullRoom}</td>`}).join('');return `<tr><td><strong>${escCell(h[1])}</strong></td><td>${escCell(h[2])}</td><td>${escCell(h[3])}</td>${cells}<td><button class="btn outline" onclick="openHotelModal(${hotels.indexOf(h)})">Edit</button> ${canEdit?`<button class="btn danger" onclick="deleteHotel(${hotels.indexOf(h)})">Delete</button>`:''}</td></tr>`}).join(''):`<tr><td colspan="${4+maxPeriods*8}" class="muted">No ${providerLabel(provider)} hotels configured for ${hotelCity}.</td></tr>`;
     return `<div class="card" style="margin-top:12px;padding:12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px"><div><h3 style="margin:0;color:var(--color-navy)">${providerLabel(provider)} HOTELS</h3><div class="muted">${hotelCity} • Date ranges and rates are independent for this provider.</div></div><span class="badge">${rows.length} hotel${rows.length===1?'':'s'}</span></div><div class="tablewrap"><table class="table" style="min-width:${Math.max(980,520*maxPeriods+360)}px"><thead><tr><th rowspan="2">Hotel Name</th><th rowspan="2">Location</th><th rowspan="2">Distance</th>${periodHeads}<th rowspan="2">Actions</th></tr><tr>${subHeads}</tr></thead><tbody>${body}</tbody></table></div></div>`;
   }).join('');
 }
@@ -645,9 +544,9 @@ function isSuperAdmin(){
   const r=String(currentUser?.role||'').trim().toLowerCase().replace(/[ _-]+/g,'');
   return r==='superadmin';
 }
-function recycleKey(){return 'keaRecycleV201_'+(isSuperAdmin()?'SUPERADMIN':(currentUser?.username||'guest'))}
+function recycleKey(){return 'keaRecycleV300_'+(isSuperAdmin()?'SUPERADMIN':(currentUser?.username||'guest'))}
 function loadRecycle(){return JSON.parse(localStorage.getItem(recycleKey())||'{"vouchers":[],"quotes":[]}')}
-const ACTIVITY_LOG_KEY='keaActivityLogV201',ACTIVITY_LOG_LIMIT=200;
+const ACTIVITY_LOG_KEY='keaActivityLogV300',ACTIVITY_LOG_LIMIT=200;
 function loadActivityLog(){try{const v=JSON.parse(localStorage.getItem(ACTIVITY_LOG_KEY)||'[]');return Array.isArray(v)?v:[]}catch{return []}}
 function logActivity(action,details){
   const log=loadActivityLog();
@@ -833,10 +732,10 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   const cfg=window.KARVAN_SUPABASE||{};
   function onlineError(msg){
     try{ showAuthError(msg); }catch(e){ const el=document.getElementById('authError'); if(el){el.textContent=msg;el.style.display='block';} }
-    console.error('[V2.0.1 App]',msg);
+    console.error('[Karvan App]',msg);
   }
   if(!cfg.url || !cfg.publishableKey || !window.supabase){
-    console.error('[V2.0.1 App] Supabase configuration/library unavailable.');
+    console.error('[Karvan App] Supabase configuration/library unavailable.');
     return;
   }
   const sb=window.supabase.createClient(cfg.url,cfg.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
@@ -872,18 +771,18 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
         const profileRows=await fetchAllRows(()=>sb.from('profiles').select('*').order('created_at',{ascending:true}));
         users=profileRows.map(x=>({username:x.username||String(x.email||'').split('@')[0],email:x.email||'',firstName:x.first_name||'',lastName:x.last_name||'',name:[x.first_name,x.last_name].filter(Boolean).join(' ')||x.username||'',contact:x.contact||'',agency:x.agency||'',address:x.address||'',role:x.role||'user',active:x.active!==false,permissions:(x.permissions&&typeof x.permissions==='object')?x.permissions:null,id:x.id}));
         originalSet(AUTH_KEY,JSON.stringify(users));
-      }catch(e){console.warn('[V2.0.1 App] Profile sync failed',e)}
+      }catch(e){console.warn('[Karvan App] Profile sync failed',e)}
     }
     let voucherRows=[];
     try{
       voucherRows=await fetchAllRows(()=>superA?sb.from('vouchers').select('*').order('created_at',{ascending:false}):sb.from('vouchers').select('*').eq('owner_id',user.id).order('created_at',{ascending:false}));
-    }catch(e){console.warn('[V2.0.1 App] Voucher sync failed',e)}
+    }catch(e){console.warn('[Karvan App] Voucher sync failed',e)}
     const vq={data:voucherRows};
     if(vq.data){
       const by={};
       vq.data.forEach(r=>{const ownerId=String(r.owner_id||'').trim();if(!ownerId)return;(by[ownerId]??=[]).push({...r.payload,_onlineId:r.id,ownerId,_syncBaseUpdatedAt:r.updated_at||r.created_at||null});});
       const mergeOwnerQuotes=(ownerId,remoteRows)=>{
-        const key='keaQuotesV201_'+ownerId;
+        const key='keaQuotesV300_'+ownerId;
         let local=[];try{local=JSON.parse(localStorage.getItem(key)||'[]')}catch{}
         if(!Array.isArray(local))local=[];
         const merged=[];
@@ -907,7 +806,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
       };
       const ownerIds=superA?Array.from(new Set([...Object.keys(by),...Object.keys(by).map(String)])): [user.id];
       if(superA){
-        const localOwnerIds=Object.keys(localStorage).filter(k=>k.startsWith('keaQuotesV201_')).map(k=>k.slice('keaQuotesV201_'.length)).filter(Boolean);
+        const localOwnerIds=Object.keys(localStorage).filter(k=>k.startsWith('keaQuotesV300_')).map(k=>k.slice('keaQuotesV300_'.length)).filter(Boolean);
         new Set([...ownerIds,...localOwnerIds]).forEach(ownerId=>mergeOwnerQuotes(ownerId,by[ownerId]||[]));
       }else mergeOwnerQuotes(user.id,by[user.id]||[]);
     }
@@ -915,8 +814,8 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   }
   window.loadServerData=loadServer;
   async function syncKey(key){
-    if(!key.startsWith('keaQuotesV201_')) return false;
-    const ownerId=key.replace(/^kea(QuotesV201_)/,'').trim();
+    if(!key.startsWith('keaQuotesV300_')) return false;
+    const ownerId=key.replace(/^kea(QuotesV300_)/,'').trim();
     if(!ownerId) return false;
     const {data:{user}}=await sb.auth.getUser(); if(!user) return false;
     const isSelf=String(user.id)===ownerId;
@@ -943,7 +842,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
       if(!prior||remoteTime(r)>=remoteTime(prior))byRef.set(ref,r);
     });
     // Collapse duplicate local objects by server id/reference before writing. This handles
-    // both legacy records (reference only) and newer records (online id + reference), while
+    // both older records (reference only) and newer records (online id + reference), while
     // preserving the newest copy instead of silently overwriting it with an older duplicate.
     const localIdentity=(a,b)=>{
       const aid=String(a?._onlineId||'').trim(),bid=String(b?._onlineId||'').trim();
@@ -980,7 +879,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
         const base=String(item._syncBaseUpdatedAt||'').trim();
         const serverUpdated=remoteTime(existingRow), localUpdated=localEditTime(item);
         // If this cache predates the server version and has no explicit compare-and-swap
-        // token (legacy records), never blindly overwrite the newer remote record.
+        // token (older records), never blindly overwrite the newer remote record.
         if(!base && serverUpdated>localUpdated){applyRemote(item,existingRow);continue;}
         // Compare-and-swap: only update the exact server version this device loaded.
         // If another device changed the row between our read and write, the update affects 0 rows.
@@ -1011,7 +910,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
       // Deletion tombstone guard: a stale device may still hold a locally cached copy after
       // another device deleted that record and moved it to the Recycle Bin. Never resurrect
       // such a record merely because it is absent from `vouchers`. Check the tombstone by
-      // original server id first, then by booking reference for legacy records.
+      // original server id first, then by booking reference for older records.
       let tombstone=null;
       try{
         let tombQuery=sb.from('recycle_bin').select('id,original_id,reference,payload,deleted_at').eq('owner_id',ownerId);
@@ -1051,15 +950,15 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   window.KEA_DATA_SOURCE_POLICY={onlineSource:'supabase',offlineSource:'localStorage-cache',syncQueue:true};
 
   /* Unified persistence: local cache -> Supabase -> durable offline queue. */
-  window.keaV201PersistSavedKey=async function(key){
+  window.keaPersistSavedKey=async function(key){
     if(!window.KARVAN_ONLINE?.enabled)return true;
-    if(!navigator.onLine){window.keaV201QueueWrite?.('record',key);return false;}
+    if(!navigator.onLine){window.keaQueueWrite?.('record',key);return false;}
     try{
       const ok=await window.syncSavedRecordKey(key);
-      if(!ok){window.keaV201QueueWrite?.('record',key);return false;}
-      window.keaV201QueueRemove?.('record',key);
+      if(!ok){window.keaQueueWrite?.('record',key);return false;}
+      window.keaQueueRemove?.('record',key);
       return true;
-    }catch(e){console.error('[V2.0.1 persistence]',e);window.keaV201QueueWrite?.('record',key);return false;}
+    }catch(e){console.error('[Karvan persistence]',e);window.keaQueueWrite?.('record',key);return false;}
   };
       /* Quote saving is owned by the unified Quote architecture below. */
   
@@ -1090,7 +989,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
           p=Object.assign({},cached,{id:su.id});
         }
         if(p.active===false){await sb.auth.signOut();return onlineError('This account is inactive. Please contact the Super Admin.');}
-        currentUser=p;sessionStorage.setItem(SESSION_KEY,p.username||'');loadUserQuotes();$('authScreen').style.display='none';$('appRoot').style.display='block';applyUserUI();init();try{if(online()&&typeof window.keaV201LoadOnlineConfigAndData==='function')await window.keaV201LoadOnlineConfigAndData();}catch(e){console.warn('[Karvan] Online data load deferred:',e)}
+        currentUser=p;sessionStorage.setItem(SESSION_KEY,p.username||'');loadUserQuotes();$('authScreen').style.display='none';$('appRoot').style.display='block';applyUserUI();init();try{if(online()&&typeof window.keaLoadOnlineConfigAndData==='function')await window.keaLoadOnlineConfigAndData();}catch(e){console.warn('[Karvan] Online data load deferred:',e)}
       }else{$('authScreen').style.display='flex';$('appRoot').style.display='none';}
     }catch(e){onlineError('Unable to initialize online login: '+(e.message||e));}
   };
@@ -1169,9 +1068,9 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
 
 
 
-<script id="v201-application-layer">
+<script id="kea-application-layer">
 
-/* ================= V2.0.1 ONLINE DATA LAYER ================= */
+/* ================= ONLINE DATA LAYER ================= */
 (function(){
   'use strict';
   const KEYMAP={
@@ -1179,8 +1078,8 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
     transport:'transport', extras:'extras'
   };
   const LOCAL_KEYS={
-    fx:'keaFxV201',hotels:'keaHotelsV201',visaTypes:'keaVisaV201',
-    airlines:'keaAirlinesV201',transport:'keaTransportV201',extras:'keaExtrasV201',appearanceDay:'keaThemeV1_day',appearanceNight:'keaThemeV1_night'
+    fx:'keaFxV300',hotels:'keaHotelsV300',visaTypes:'keaVisaV300',
+    airlines:'keaAirlinesV300',transport:'keaTransportV300',extras:'keaExtrasV300',appearanceDay:'keaThemeV1_day',appearanceNight:'keaThemeV1_night'
   };
   let hydrating=false;
 
@@ -1248,7 +1147,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
             const current=hotelCatalogIsCurrent(remoteHotels,remoteVersion);
             hotels=normalizeHotelProviders(current?remoteHotels:JSON.parse(JSON.stringify(defaultHotels)));
             window.hotels=hotels;
-            localStorage.setItem('keaHotelsV201',JSON.stringify(hotels));
+            localStorage.setItem('keaHotelsV300',JSON.stringify(hotels));
             if(!current && admin()) await publishCanonicalHotels();
           } else if(localName==='appearanceDay'||localName==='appearanceNight') {
              let appearanceRemote=remote;if(typeof appearanceRemote==='string'){try{appearanceRemote=JSON.parse(appearanceRemote)}catch(e){appearanceRemote=null}}
@@ -1290,17 +1189,17 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   function commitSharedConfig(before){const ok=window.saveData();if(!ok){restoreSharedConfig(before);return false}return true}
   window.saveData=function(){
     if(online()&&!admin())return false;
-    const keys=['keaFxV201','keaHotelsV201','keaVisaV201','keaAirlinesV201','keaTransportV201','keaExtrasV201'];
+    const keys=['keaFxV300','keaHotelsV300','keaVisaV300','keaAirlinesV300','keaTransportV300','keaExtrasV300'];
     const previous=Object.fromEntries(keys.map(k=>[k,localStorage.getItem(k)]));
     try{
-      localStorage.setItem('keaFxV201',String(Number(window.fx)||75));
-      localStorage.setItem('keaHotelsV201',JSON.stringify(window.hotels||hotels||[]));
-      localStorage.setItem('keaVisaV201',JSON.stringify(window.visaTypes||visaTypes||[]));
-      localStorage.setItem('keaAirlinesV201',JSON.stringify(window.airlines||airlines||[]));
-      localStorage.setItem('keaTransportV201',JSON.stringify(window.transport||transport||[]));
-      localStorage.setItem('keaExtrasV201',JSON.stringify(window.extras||extras||[]));
-      if(typeof window.keaV201QueueWrite==='function')keys.forEach(k=>window.keaV201QueueWrite('config',k));
-      if(typeof window.keaV201FlushSyncQueue==='function')window.keaV201FlushSyncQueue().catch(e=>console.warn('[Karvan config sync]',e));
+      localStorage.setItem('keaFxV300',String(Number(window.fx)||75));
+      localStorage.setItem('keaHotelsV300',JSON.stringify(window.hotels||hotels||[]));
+      localStorage.setItem('keaVisaV300',JSON.stringify(window.visaTypes||visaTypes||[]));
+      localStorage.setItem('keaAirlinesV300',JSON.stringify(window.airlines||airlines||[]));
+      localStorage.setItem('keaTransportV300',JSON.stringify(window.transport||transport||[]));
+      localStorage.setItem('keaExtrasV300',JSON.stringify(window.extras||extras||[]));
+      if(typeof window.keaQueueWrite==='function')keys.forEach(k=>window.keaQueueWrite('config',k));
+      if(typeof window.keaFlushSyncQueue==='function')window.keaFlushSyncQueue().catch(e=>console.warn('[Karvan config sync]',e));
       return true;
     }catch(e){
       keys.forEach(k=>{try{if(previous[k]===null)localStorage.removeItem(k);else localStorage.setItem(k,previous[k])}catch(_){}});
@@ -1314,9 +1213,9 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
     const value=Number(document.getElementById('fxInput')?.value);
     if(!value||value<=0)return msg('Enter a valid SAR to PKR exchange rate.');
     window.fx=value;
-    localStorage.setItem('keaFxV201',String(value));
-    if(typeof window.keaV201QueueWrite==='function')window.keaV201QueueWrite('config','keaFxV201');
-    if(typeof window.keaV201FlushSyncQueue==='function')await window.keaV201FlushSyncQueue();
+    localStorage.setItem('keaFxV300',String(value));
+    if(typeof window.keaQueueWrite==='function')window.keaQueueWrite('config','keaFxV300');
+    if(typeof window.keaFlushSyncQueue==='function')await window.keaFlushSyncQueue();
     if(typeof renderVisa==='function')renderVisa();
     if(typeof renderWizard==='function')renderWizard();
     alert('Exchange rate saved: 1 SAR = '+value+' PKR.');
@@ -1327,7 +1226,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   window.appVisaIsOnly=function(v){return String(v?.name||'').trim().toLowerCase()==='only visa'};
   window.appVisaIsUmrah=function(v){return /^umrah(?:\s+visa)?$/i.test(String(v?.name||'').trim())};
   window.appEnsureUmrahDurations=function(v){
-    /* Legacy compatibility only: do not overwrite Super Admin-edited Umrah duration/category data. */
+    /* Compatibility guard: do not overwrite Super Admin-edited Umrah duration/category data. */
     return false;
   }
   window.appFindGroup=function(v,n){
@@ -1375,7 +1274,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   };
   // Historical records use their saved component snapshot when available. This prevents
   // later Settings/catalog price changes from silently changing invoices and summaries.
-  // Older records without a snapshot retain the legacy calculation fallback.
+  // Older records without a snapshot retain the compatibility calculation fallback.
   window.quoteDisplayTotals=function(x){
     const s=x?.costSnapshot;
     if(s&&typeof s==='object'&&Number.isFinite(Number(s.grand))){
@@ -1443,18 +1342,14 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   };
   window.openAirlineManagement=function(){
     if(!isSuperAdmin())return msg('Only Super Admin can access Airline Management.');
-    const mg=document.getElementById('managementSettingsCard');
+    if(typeof window.showPage==='function')window.showPage('dashboard');
     const card=document.getElementById('airlineSettingsCard');
-    if(mg)mg.style.display='none';
     if(card){card.style.display='block';card.scrollIntoView({behavior:'smooth',block:'start'});}
     renderAirlines();
   };
   window.closeAirlineManagement=function(){
     const card=document.getElementById('airlineSettingsCard');
-    const mg=document.getElementById('managementSettingsCard');
-    if(card)card.style.display='none';
-    if(mg)mg.style.display='';
-    window.scrollTo({top:0,behavior:'smooth'});
+    if(card)card.scrollIntoView({behavior:'smooth',block:'start'});
   };
   window.renderAirlines=function(){
     if(!document.getElementById('airlineManager'))return;
@@ -1574,7 +1469,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
         const rpc=await sb().rpc('admin_delete_user',{p_user_id:u.id});
         if(rpc.error)throw new Error('Online user deletion is not available because the required admin_delete_user service is not configured. No local user data was removed.');
       }
-      localStorage.removeItem('keaQuotesV201_'+u.username);if(u.id)localStorage.removeItem('keaQuotesV201_'+u.id);users.splice(i,1);userMgmtLocalSave();await renderUserManagement();logActivity('User deleted',`Deleted user ${u.username}.`);msg('User deleted.');
+      localStorage.removeItem('keaQuotesV300_'+u.username);if(u.id)localStorage.removeItem('keaQuotesV300_'+u.id);users.splice(i,1);userMgmtLocalSave();await renderUserManagement();logActivity('User deleted',`Deleted user ${u.username}.`);msg('User deleted.');
     }catch(e){msg(e?.message||'Unable to delete user.');}
   };
   window.renderUserManagement=function(){
@@ -1782,7 +1677,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   }
 
   /* Expose the one-time online loader; initAuthOnline calls it directly after session setup. */
-  window.keaV201LoadOnlineConfigAndData=loadOnlineConfigAndData;
+  window.keaLoadOnlineConfigAndData=loadOnlineConfigAndData;
 
 })();
 
@@ -1845,7 +1740,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
 
 
 
-<script id="v201-form-exit-cleanup">
+<script id="kea-form-exit-cleanup">
 (function(){
  function cleanFormExit(){
   document.querySelectorAll('.modal,[role="dialog"],.dialog,.popup').forEach(function(box){
@@ -1863,21 +1758,62 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
  // legitimate close/exit controls that are added later by unrelated dialogs or the booking wizard.
 })();
 </script>
-
-
-
-
-<script id="v201-visa-pricing-rule">
+<script id="kea-v300-storage-migration">
 (function(){
-  "use strict";
+  'use strict';
+  /* Unified one-time data migration. Legacy keys are read only; active runtime uses V300. */
+  const FLAG='keaV300StorageMigrationComplete';
+  if(localStorage.getItem(FLAG)==='complete') return;
+  const copy=(source,target,transform)=>{
+    try{
+      if(localStorage.getItem(target)!==null)return true;
+      const raw=localStorage.getItem(source); if(raw===null)return true;
+      let value=JSON.parse(raw); if(typeof transform==='function')value=transform(value);
+      const encoded=JSON.stringify(value); localStorage.setItem(target,encoded);
+      return localStorage.getItem(target)===encoded;
+    }catch(e){return false;}
+  };
+  const normalizeQuotes=(value)=>Array.isArray(value)?value.map(q=>{
+    if(!q||typeof q!=='object')return q;
+    const out={...q};
+    if(out._legacyCalculator||!out.status)out.status=out._legacyCalculator?'draft':'confirmed';
+    delete out._legacyCalculator; return out;
+  }):value;
+  let ok=true;
+  const singles=[
+    ['keaHotelsV10','keaHotelsV300'],['keaVisaV10','keaVisaV300'],
+    ['keaTransportV10','keaTransportV300'],['keaExtrasV10','keaExtrasV300'],
+    ['keaAirlinesV10','keaAirlinesV300'],['keaFxV2.0.1','keaFxV300'],
+    ['keaUsersV10','keaUsersV300'],['keaSessionV10','keaSessionV300'],
+    ['keaHotelsV201','keaHotelsV300'],['keaVisaV201','keaVisaV300'],
+    ['keaTransportV201','keaTransportV300'],['keaExtrasV201','keaExtrasV300'],
+    ['keaAirlinesV201','keaAirlinesV300'],['keaFxV201','keaFxV300'],
+    ['keaUsersV201','keaUsersV300'],['keaSessionV201','keaSessionV300'],
+    ['keaV201_syncQueue','keaV300_syncQueue'],['keaV201Architecture','keaArchitectureV300'],
+    ['keaV201_recoveryLog','keaRecoveryLogV300'],['keaActivityLogV201','keaActivityLogV300']
+  ];
+  singles.forEach(([a,b])=>{if(!copy(a,b))ok=false;});
+  const prefixes=[
+    ['keaQuotesV10_','keaQuotesV300_',normalizeQuotes],
+    ['keaQuotesV11_','keaQuotesV300_',normalizeQuotes],
+    ['keaQuotesV7','keaQuotesV300_',normalizeQuotes],
+    ['keaQuotesV201_','keaQuotesV300_',normalizeQuotes],
+    ['keaRecycleV13_','keaRecycleV300_',null],
+    ['keaRecycleV201_','keaRecycleV300_',null]
+  ];
+  prefixes.forEach(([oldPrefix,newPrefix,transform])=>{
+    const keys=[]; for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith(oldPrefix))keys.push(k);}
+    keys.forEach(k=>{if(!copy(k,newPrefix+k.slice(oldPrefix.length),transform))ok=false;});
+  });
+  try{localStorage.setItem(FLAG,ok?'complete':'pending');}catch(e){}
 })();
 </script>
-<script id="v201-unified-persistence">
+<script id="kea-unified-persistence">
 (function(){
   "use strict";
-  const OUTBOX="keaV201_syncQueue";
-  const CONFIG_KEYS=new Set(["keaHotelsV201","keaVisaV201","keaAirlinesV201","keaTransportV201","keaExtrasV201","keaFxV201","keaThemeV1_day","keaThemeV1_night"]);
-  const RECORD_PREFIXES=["keaQuotesV201_"];
+  const OUTBOX="keaV300_syncQueue";
+  const CONFIG_KEYS=new Set(["keaHotelsV300","keaVisaV300","keaAirlinesV300","keaTransportV300","keaExtrasV300","keaFxV300","keaThemeV1_day","keaThemeV1_night"]);
+  const RECORD_PREFIXES=["keaQuotesV300_"];
   const read=(k,f)=>{try{const v=JSON.parse(localStorage.getItem(k)||"null");return v==null?f:v}catch(e){return f}};
   const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
   const onlineReady=()=>!!(navigator.onLine&&window.KARVAN_ONLINE?.sb);
@@ -1887,10 +1823,10 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   function qDel(kind,key){qWrite(qRead().filter(x=>!(x.kind===kind&&x.key===key)));}
   async function syncConfig(key){if(!CONFIG_KEYS.has(key)||!onlineReady()||typeof window.upsertConfig!=="function")return false;try{return (await window.upsertConfig(key,JSON.parse(localStorage.getItem(key)||"null")))===true;}catch(e){return false;}}
   async function syncRecord(key){if(!RECORD_PREFIXES.some(p=>String(key).startsWith(p))||!onlineReady()||typeof window.syncSavedRecordKey!=="function")return false;try{return (await window.syncSavedRecordKey(key))===true;}catch(e){return false;}}
-  window.keaV201QueueWrite=(kind,key)=>{if(kind==='config'||kind==='record')qPut(kind,key);};
-  window.keaV201QueueRemove=(kind,key)=>{if(kind==='config'||kind==='record')qDel(kind,key);};
+  window.keaQueueWrite=(kind,key)=>{if(kind==='config'||kind==='record')qPut(kind,key);};
+  window.keaQueueRemove=(kind,key)=>{if(kind==='config'||kind==='record')qDel(kind,key);};
   let flushPromise=null;
-  window.keaV201FlushSyncQueue=async function(){
+  window.keaFlushSyncQueue=async function(){
     if(flushPromise)return flushPromise;
     flushPromise=(async()=>{
       if(!onlineReady())return {sent:0,remaining:qRead().length};
@@ -1919,11 +1855,11 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
     })().finally(()=>{flushPromise=null;});
     return flushPromise;
   };
-  window.keaV201SyncStatus=function(){return {online:navigator.onLine&&!!window.KARVAN_ONLINE?.sb,pending:qRead().length};};
-  window.addEventListener('offline',()=>{document.documentElement.setAttribute('data-connectivity','offline');console.info('[V2.0.1] Offline mode enabled; local cache retained until online sync.');});
-  window.addEventListener('online',async()=>{document.documentElement.setAttribute('data-connectivity','online');await window.keaV201FlushSyncQueue();});
-  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')window.keaV201FlushSyncQueue();});
-  setTimeout(()=>window.keaV201FlushSyncQueue(),1200);
+  window.keaSyncStatus=function(){return {online:navigator.onLine&&!!window.KARVAN_ONLINE?.sb,pending:qRead().length};};
+  window.addEventListener('offline',()=>{document.documentElement.setAttribute('data-connectivity','offline');console.info('[Karvan] Offline mode enabled; local cache retained until online sync.');});
+  window.addEventListener('online',async()=>{document.documentElement.setAttribute('data-connectivity','online');await window.keaFlushSyncQueue();});
+  document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')window.keaFlushSyncQueue();});
+  setTimeout(()=>window.keaFlushSyncQueue(),1200);
 })();
 </script>
 
@@ -1932,7 +1868,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
 
 
 
-<script id="v201-step4-hotel">
+<script id="kea-step4-hotel-validation">
 (function(){
   "use strict";
   const MAX=10;
@@ -1950,7 +1886,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
     return null;
   }
 
-  window.keaV201NormalizeHotelPeriods=function(h){
+  window.keaNormalizeHotelPeriods=function(h){
     const raw=Array.isArray(h&&h.periods)?h.periods:[];
     return raw.slice(0,MAX).map(function(p){
       const x=Object.assign({},p);
@@ -1961,7 +1897,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
     });
   };
 
-  window.keaV201ValidateHotelPeriods=function(periods){
+  window.keaValidateHotelPeriods=function(periods){
     if(!Array.isArray(periods)||periods.length<1)return {ok:false,error:"At least one period is required."};
     if(periods.length>MAX)return {ok:false,error:"Maximum 10 periods are allowed."};
     const seen=[];
@@ -1979,15 +1915,15 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
     return {ok:true};
   };
 
-  window.keaV201HotelRateColumns=function(){
+  window.keaHotelRateColumns=function(){
     return [
       ["Full Room","fullRoom"],["Quint","quint"],["Quad","quad"],
       ["Triple","triple"],["Double","double"],["Sharing","sharing"]
     ];
   };
 
-  window.keaV201HotelPeriodsForDisplay=function(h){
-    const ps=window.keaV201NormalizeHotelPeriods(h);
+  window.keaHotelPeriodsForDisplay=function(h){
+    const ps=window.keaNormalizeHotelPeriods(h);
     return ps.map(function(p,i){
       return {
         no:i+1,start:p.start,end:p.end,
@@ -1998,10 +1934,10 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
 })();
 </script>
 
-<script id="v201-step4-hotel-detail">
+<script id="kea-step4-hotel-validation-detail">
 (function(){
-  window.keaV201HotelPeriodDetail=function(h){
-    const ps=window.keaV201NormalizeHotelPeriods(h);
+  window.keaHotelPeriodDetail=function(h){
+    const ps=window.keaNormalizeHotelPeriods(h);
     if(!ps.length)return '<div class="muted">No hotel date ranges configured.</div>';
     return '<div class="hotel-period-detail">'+ps.map(function(p,i){
       return '<div class="hotel-period-row"><strong>Period '+(i+1)+'</strong> <span>'+String(p.start).replace(/</g,'&lt;')+' → '+String(p.end).replace(/</g,'&lt;')+'</span><span>Full Room: '+Number(p.fullRoom||0)+'</span><span>Quint: '+Number(p.quint||0)+'</span><span>Quad: '+Number(p.quad||0)+'</span><span>Triple: '+Number(p.triple||0)+'</span><span>Double: '+Number(p.double||0)+'</span><span>Sharing: '+Number(p.sharing||0)+'</span></div>';
@@ -2009,7 +1945,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   };
 })();
 </script>
-<script id="v201-step5a-hotel-calculation">(function(){
+<script id="kea-step5a-hotel-calculation">(function(){
   'use strict';
   const safeNum=v=>{const n=Number(v);return Number.isFinite(n)?n:0};
   function dateOnly(v){if(v instanceof Date){if(!Number.isFinite(v.getTime()))return '';const y=v.getFullYear(),m=String(v.getMonth()+1).padStart(2,'0'),d=String(v.getDate()).padStart(2,'0');return `${y}-${m}-${d}`}const s=String(v??'').trim();const m=s.match(/^(\d{4})-(\d{2})-(\d{2})/);return m?`${m[1]}-${m[2]}-${m[3]}`:''}
@@ -2034,7 +1970,7 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
     return Number.isFinite(d.getTime())&&d.toISOString().slice(0,10)===x;
   }
   function validateHotelStay(s,index){const hasHotel=!!String(s?.hotel||'').trim(),hasIn=!!String(s?.in||'').trim(),hasOut=!!String(s?.out||'').trim();if(!hasHotel&&!hasIn&&!hasOut)return {valid:true,index};if(!hasHotel)return {valid:false,index,message:`Hotel stay ${index+1}: select a hotel or clear the dates.`};if(!hasIn||!hasOut)return {valid:false,index,message:`Hotel stay ${index+1}: Check-in and Check-out are both required.`};if(!strictDate(s.in)||!strictDate(s.out))return {valid:false,index,message:`Hotel stay ${index+1}: enter valid Check-in and Check-out dates.`};if(dateOnly(s.out)<=dateOnly(s.in))return {valid:false,index,message:`Hotel stay ${index+1}: Check-out must be after Check-in.`};const h=window.hotelObj?.(s);if(!h)return {valid:false,index,message:`Hotel stay ${index+1}: the selected hotel could not be found.`};if(!h[10]||![4,5].includes(Number(h[10].maxOccupancy)))return {valid:false,index,message:`Hotel stay ${index+1}: the selected hotel has no max occupancy setting. A Super Admin must set it to 4 or 5 before this hotel can be used.`};const nights=daysBetween(s.in,s.out);if(nights<=0)return {valid:false,index,message:`Hotel stay ${index+1}: the stay must be at least 1 night.`};const room=s.room||'Sharing',rooms=Math.floor(safeNum(s.rooms)),eligible=eligibleForBooking(),maxOcc=Number(h?.[10]?.maxOccupancy)===4?4:5;if(room==='Sharing'){if(rooms!==0)return {valid:false,index,message:`Hotel stay ${index+1}: Sharing must use 0 rooms.`};for(let i=0;i<nights;i++){const d=addDays(s.in,i),r=rate(h,d,'sharing');if(r===null)return {valid:false,index,message:`Hotel stay ${index+1}: no Sharing rate is available for ${d}.`}}return {valid:true,index}}if(!['Double','Triple','Quad','Quint','Full Room'].includes(room))return {valid:false,index,message:`Hotel stay ${index+1}: select a valid accommodation type.`};if(['Double','Triple','Quad','Quint'].includes(room)){const cap={Double:2,Triple:3,Quad:4,Quint:5}[room];if(room==='Quint'&&maxOcc<5)return {valid:false,index,message:`Hotel stay ${index+1}: Quint is not available for this hotel.`};if(rooms<1||eligible!==rooms*cap)return {valid:false,index,message:`Hotel stay ${index+1}: ${room} requires exactly ${rooms*cap} hotel occupants (Adults + Child With Bed). Change the room type, number of rooms, or person count.`};for(let i=0;i<nights;i++){const d=addDays(s.in,i),r=rate(h,d,room);if(r===null)return {valid:false,index,message:`Hotel stay ${index+1}: ${room} rate is unavailable for ${d}.`}}return {valid:true,index}}if(rooms<1)return {valid:false,index,message:`Hotel stay ${index+1}: Number of Rooms must be at least 1 for Full Room.`};if(rooms*maxOcc<eligible)return {valid:false,index,message:`Hotel stay ${index+1}: Full Room occupancy exceeds this hotel's maximum of ${maxOcc} persons per room. Increase rooms or choose a different hotel.`};if(s.allocationMode==='assigned'){const va=validateAssignedStay(s,h);if(!va.valid)return {valid:false,index,message:`Hotel stay ${index+1}: ${va.reason}`}}for(let i=0;i<nights;i++){const d=addDays(s.in,i),full=rate(h,d,'fullRoom');if(full===null)return {valid:false,index,message:`Hotel stay ${index+1}: Full Room rate is unavailable for ${d}.`}}return {valid:true,index}}
-  window.keaV201ValidateHotelBooking=function(){
+  window.keaValidateHotelBooking=function(){
     const stays=Array.isArray(window.q?.stays)?window.q.stays:[];
     for(let i=0;i<stays.length;i++){
       const r=validateHotelStay(stays[i],i); if(!r.valid)return r;
@@ -2044,13 +1980,13 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
 
   window.stayNights=function(a,b){return a&&typeof a==='object'&&!Array.isArray(a)?daysBetween(a.in,a.out):daysBetween(a,b)};
   window.hotelCost=hotelCostImpl;window.hotelRoomCostForSummary=totalRoomCost;
-  window.keaV201HotelAllocation=function(s){const total=hotelCostImpl(s),n=eligibleForBooking(),groups=[];if(!s||s.room==='Sharing'||Number(s.rooms||0)<=0)return {mode:'sharing',total,perPerson:n?total/n:0,groups:[]};if(s.allocationMode==='assigned'){(s.roomAllocations||[]).forEach((r,i)=>{const occ=safeNum(r.adults)+safeNum(r.childBed),rc=totalRoomCost(s,i),per=occ?rc/occ:0;if(occ)groups.push({room:i+1,adults:safeNum(r.adults),childBed:safeNum(r.childBed),occupants:occ,roomCost:rc,perPerson:per})});return {mode:'assigned',total,perPerson:n?total/n:0,groups};}return {mode:'notAssigned',total,perPerson:n?total/n:0,groups:n?[{room:'All',adults:safeNum(window.q?.adults),childBed:safeNum(window.q?.childBed),occupants:n,roomCost:total,perPerson:total/n}]:[]};};
+  window.keaHotelAllocation=function(s){const total=hotelCostImpl(s),n=eligibleForBooking(),groups=[];if(!s||s.room==='Sharing'||Number(s.rooms||0)<=0)return {mode:'sharing',total,perPerson:n?total/n:0,groups:[]};if(s.allocationMode==='assigned'){(s.roomAllocations||[]).forEach((r,i)=>{const occ=safeNum(r.adults)+safeNum(r.childBed),rc=totalRoomCost(s,i),per=occ?rc/occ:0;if(occ)groups.push({room:i+1,adults:safeNum(r.adults),childBed:safeNum(r.childBed),occupants:occ,roomCost:rc,perPerson:per})});return {mode:'assigned',total,perPerson:n?total/n:0,groups};}return {mode:'notAssigned',total,perPerson:n?total/n:0,groups:n?[{room:'All',adults:safeNum(window.q?.adults),childBed:safeNum(window.q?.childBed),occupants:n,roomCost:total,perPerson:total/n}]:[]};};
   })();</script>
 <script id="step9-final-security-layer">(function(){
   const SUPER=()=>typeof isSuperAdmin==='function'&&isSuperAdmin();
   const USER=()=>String(currentUser?.username||'').toLowerCase();
   const ownKey=(base)=>base+'_'+(currentUser?.id||String(currentUser?.username||'guest').toLowerCase());
-  const legacyOwnKey=(base)=>base+'_'+(currentUser?.username||'guest');
+  const usernameCompatibilityKey=(base)=>base+'_'+(currentUser?.username||'guest');
   window.showPage=function(id,btn){
     if(id==='admin'&&!currentUser){alert('Please sign in first.');return;}
     return coreShowPage.apply(this,arguments);
@@ -2062,17 +1998,17 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
       const user=USER(); if(!user){alert('Please sign in first.');return;}
       const authId=window.KARVAN_ONLINE?.sb?null:null; const data={backupType:'Karvan-e-Asal',version:'2.0.4',scope:SUPER()?'company':'user',owner:user,ownerId:currentUser?.id||null,createdAt:new Date().toISOString(),local:{}};
       if(SUPER()){
-        const keys=['keaFxV201','keaHotelsV201','keaVisaV201','keaAirlinesV201','keaTransportV201','keaExtrasV201','keaV201Architecture','keaV201_syncQueue'];
+        const keys=['keaFxV300','keaHotelsV300','keaVisaV300','keaAirlinesV300','keaTransportV300','keaExtrasV300','keaArchitectureV300','keaV300_syncQueue'];
         keys.forEach(k=>{const v=localStorage.getItem(k);if(v!==null)data.local[k]=v});
         // Include every locally stored user's records under one canonical key per user.
-        // Legacy username-keyed snapshots are merged into the user's ID-keyed snapshot
+        // Username-keyed compatibility snapshots are merged into the user's ID-keyed snapshot
         // and deduplicated by Quote reference so company restore cannot create duplicates.
         (users||[]).forEach(u=>{
           const canonical=u.id||String(u.username||'').toLowerCase();
           const keys=[u.id,u.username,String(u.username||'').toLowerCase()].filter(Boolean).map(String);
           const merged=[];const seen=new Set();
           keys.forEach(key=>{
-            const raw=localStorage.getItem('keaQuotesV201_'+key); if(raw===null)return;
+            const raw=localStorage.getItem('keaQuotesV300_'+key); if(raw===null)return;
             let arr=[];try{arr=JSON.parse(raw)}catch{return}; if(!Array.isArray(arr))return;
             arr.forEach(item=>{
               if(!item||typeof item!=='object')return;
@@ -2081,10 +2017,10 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
               if(seen.has(sig))return; seen.add(sig); merged.push(item);
             });
           });
-          if(merged.length)data.local['keaQuotesV201_'+canonical]=JSON.stringify(merged);
+          if(merged.length)data.local['keaQuotesV300_'+canonical]=JSON.stringify(merged);
         });
       }else{
-        [ownKey('keaQuotesV201')].forEach(k=>{const v=localStorage.getItem(k);if(v!==null)data.local[k]=v});
+        [ownKey('keaQuotesV300')].forEach(k=>{const v=localStorage.getItem(k);if(v!==null)data.local[k]=v});
       }
       const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
       a.href=url;a.download='Karvan-e-Asal-Backup-'+(SUPER()?'Company-':'User-')+user+'-'+new Date().toISOString().slice(0,10)+'.json';document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -2100,30 +2036,30 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
       for(const [k,v] of localEntries){
         if(typeof k!=='string'||k.length>180||typeof v!=='string'||v.length>5000000)throw new Error('Backup contains invalid or oversized data.');
         if(!/^[A-Za-z0-9_.:-]+$/.test(k))throw new Error('Backup contains an invalid storage key.');
-        if(k.startsWith('keaQuotesV201_')){let parsed;try{parsed=JSON.parse(v)}catch{throw new Error('Backup contains invalid booking data.')}if(!Array.isArray(parsed)||parsed.length>5000||parsed.some(x=>!x||typeof x!=='object'||Array.isArray(x)))throw new Error('Backup contains invalid booking data.');}
+        if(k.startsWith('keaQuotesV300_')){let parsed;try{parsed=JSON.parse(v)}catch{throw new Error('Backup contains invalid booking data.')}if(!Array.isArray(parsed)||parsed.length>5000||parsed.some(x=>!x||typeof x!=='object'||Array.isArray(x)))throw new Error('Backup contains invalid booking data.');}
       }
       const owner=USER();
       if(!SUPER() && (d.scope!=='user'||(d.ownerId&&String(d.ownerId)!==String(currentUser?.id))||(!d.ownerId&&String(d.owner||'').toLowerCase()!==owner)))throw new Error('This backup belongs to another user or is a company backup. Normal users can restore only their own backup.');
-      const companyAllowed=new Set(['keaFxV201','keaHotelsV201','keaVisaV201','keaAirlinesV201','keaTransportV201','keaExtrasV201','keaV201Architecture','keaV201_syncQueue']);
+      const companyAllowed=new Set(['keaFxV300','keaHotelsV300','keaVisaV300','keaAirlinesV300','keaTransportV300','keaExtrasV300','keaArchitectureV300','keaV300_syncQueue']);
       if(SUPER()){
         for(const k of localEntries.map(([key])=>key)){
-          if(k==='keaV201_preRestoreBackup')continue;
-          if(k.startsWith('keaQuotesV201_'))continue;
+          if(k==='keaV300_preRestoreBackup')continue;
+          if(k.startsWith('keaQuotesV300_'))continue;
           if(!companyAllowed.has(k))throw new Error('Backup contains an unsupported company storage key.');
         }
         if(d.scope!=='company'&&d.scope!=='user')throw new Error('Invalid backup scope.');
       }
       if(!confirm('Restore this backup? A safety copy of your current local records will be created first.')){input.value='';return;}
       const safety={createdAt:new Date().toISOString(),owner,local:{}};
-      [ownKey('keaQuotesV201')].forEach(k=>{const v=localStorage.getItem(k);if(v!==null)safety.local[k]=v});
-      localStorage.setItem('keaV201_preRestoreBackup',JSON.stringify(safety));
+      [ownKey('keaQuotesV300')].forEach(k=>{const v=localStorage.getItem(k);if(v!==null)safety.local[k]=v});
+      localStorage.setItem('keaV300_preRestoreBackup',JSON.stringify(safety));
       if(SUPER()){
         Object.entries(d.local).forEach(([k,v])=>{
-          if(k==='keaV201_preRestoreBackup')return;
-          if(k.startsWith('keaQuotesV201_')||companyAllowed.has(k))localStorage.setItem(k,String(v));
+          if(k==='keaV300_preRestoreBackup')return;
+          if(k.startsWith('keaQuotesV300_')||companyAllowed.has(k))localStorage.setItem(k,String(v));
         });
       }else{
-        const allowed=[ownKey('keaQuotesV201')];
+        const allowed=[ownKey('keaQuotesV300')];
         allowed.forEach(k=>{if(Object.prototype.hasOwnProperty.call(d.local,k))localStorage.setItem(k,String(d.local[k]))});
       }
       loadCoreData();
@@ -2141,50 +2077,36 @@ function init(){loadUserQuotes();dashboard();/* Management lists are lazy-loaded
   function applyFinalPermissions(){
     const admin=SUPER();
     if(currentUser?.active===false){document.getElementById('appRoot')?.style.setProperty('display','none');document.getElementById('authScreen')?.style.setProperty('display','flex');return;}
-    document.querySelectorAll('.navitem[data-page],.mobileNav button[data-page]').forEach(el=>{const pg=el.getAttribute('data-page');el.style.display=hasPagePermission(pg)?'':'none';});const mobileNav=document.querySelector('.mobileNav');if(mobileNav){const visibleButtons=[...mobileNav.querySelectorAll('button')].filter(b=>getComputedStyle(b).display!=='none');mobileNav.style.gridTemplateColumns=`repeat(${Math.max(1,visibleButtons.length)},minmax(0,1fr))`;}
+    document.querySelectorAll('.navitem[data-page]').forEach(el=>{const pg=el.getAttribute('data-page');el.style.display=hasPagePermission(pg)?'':'none';});
     const mg=document.getElementById('managementSettingsCard');if(mg)mg.style.display=admin?'':'none';
     const rb=document.getElementById('recycleBin')?.closest('.card');if(rb)rb.style.display=admin?'':'none';
     const add=document.getElementById('addUserMgmtBtn');if(add)add.style.display=admin?'':'none';
   }
-  window.applyUserUI=coreApplyUserUI;window.keaV201ApplyFinalPermissions=applyFinalPermissions;
+  window.applyUserUI=coreApplyUserUI;window.keaApplyFinalPermissions=applyFinalPermissions;
   document.addEventListener('DOMContentLoaded',applyFinalPermissions);setTimeout(applyFinalPermissions,100);
 })();</script>
 
 
-<script id="v201-service-worker-register">
+<script id="kea-service-worker-register">
 if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(e=>console.warn('[Karvan] Service worker unavailable',e)));}
 </script>
 
-<style id="v204-final-ui-fix">
+<style id="kea-current-ui-fix">
 html,body{min-height:100%;}
-.topbar{display:flex!important;visibility:visible!important;opacity:1!important;z-index:100000!important;}
-.topbar .user-chip{display:flex!important;align-items:center!important;}
-@media(max-width:650px){
-  .content{padding-bottom:86px!important;}
-  .mobileNav{display:grid!important;align-items:stretch!important;justify-items:stretch!important;padding:6px 4px calc(6px + env(safe-area-inset-bottom))!important;}
-  .mobileNav button{width:100%!important;min-width:0!important;height:52px!important;margin:0!important;padding:4px 1px!important;border:0!important;background:transparent!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:3px!important;text-align:center!important;line-height:1!important;}
-  .mobileNav button .navsvg{width:21px!important;height:21px!important;min-width:21px!important;display:flex!important;align-items:center!important;justify-content:center!important;margin:0 auto!important;}
-  .mobileNav button .navsvg svg{width:19px!important;height:19px!important;display:block!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important;}
-  .mobileNav button b{display:block!important;width:100%!important;margin:0!important;padding:0!important;text-align:center!important;color:inherit!important;font-size:8.5px!important;font-weight:900!important;line-height:1.15!important;white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important;}
-  .mobileNav button.active{border-radius:9px!important;}
-  .topbar{height:64px!important;}
-  .topbar img{width:52px!important;height:52px!important;flex:0 0 52px!important;}
-}
-/* No calculator controls are allowed inside the booking wizard. */
+.topbar{z-index:100000!important;}
+/* Booking wizard uses the current booking workflow only. */
 </style>
-<script id="v204-final-ui-runtime">
+<script id="kea-current-ui-runtime">
 (function(){
   'use strict';
-  /* UI cleanup is intentionally empty: the source UI no longer renders the legacy
-     Calculator/Flight-management controls, and navigation is synchronized by the
-     central UI controller above. Avoid a MutationObserver that deletes live UI after render. */
+  /* Current UI does not use a post-render DOM deletion observer. */
 })();
 </script>
 
 <script id="v202-unified-quote-architecture">
 (function(){
   'use strict';
-  // V2.0.2 — single Quote source of truth. Calculator = draft Quote; Booking = confirmed+ Quote.
+  // Unified Quote source of truth. Draft Quote = pre-confirmation; Booking = confirmed Quote.
   const STATUS=['draft','confirmed','ongoing','completed','cancelled'];
   const CONFIRMED=new Set(['confirmed','ongoing','completed']);
   const money=n=>Number.isFinite(Number(n))?Number(n):0;
@@ -2216,7 +2138,7 @@ html,body{min-height:100%;}
     q.status=to; q.updatedAt=new Date().toISOString(); normalizePayment(q);
     return q;
   }
-  function qKey(){return 'keaQuotesV201_'+(ownerId()||String(window.currentUser?.username||'guest').toLowerCase());}
+  function qKey(){return 'keaQuotesV300_'+(ownerId()||String(window.currentUser?.username||'guest').toLowerCase());}
   function financialFingerprint(x){
     const qx=x||{},pick=(v)=>JSON.parse(JSON.stringify(v??null));
     return JSON.stringify({adults:+(qx.adults||0),childBed:+(qx.childBed||0),childNoBed:+(qx.childNoBed||0),infants:+(qx.infants||0),visa:String(qx.visa||''),visaDuration:+(qx.visaDuration||0),exchange_rate:+(qx.exchange_rate||0),stays:(qx.stays||[]).map(s=>({city:s?.city||'',hotel:s?.hotel||'',room:s?.room||'',rooms:+(s?.rooms||0),allocationMode:s?.allocationMode||'',roomAllocations:pick(s?.roomAllocations||[])})),tickets:pick(qx.tickets||{}),transport:pick(qx.transport||[]),extras:pick(qx.extras||[])});
@@ -2244,7 +2166,7 @@ html,body{min-height:100%;}
   }
   function normalizeQuote(x){
     if(!x||typeof x!=='object')return x;
-    // Historical Calculator markers are removed during migration. Runtime Quotes use status only.
+    // Historical draft markers are removed during compatibility migration. Runtime Quotes use status only.
     if(!STATUS.includes(String(x.status||''))) x.status='draft';
     delete x._legacyCalculator;
     x.payment_status=x.payment_status||x.paymentStatus||'unpaid';
@@ -2297,7 +2219,7 @@ html,body{min-height:100%;}
       const raw=localStorage.getItem(k); if(raw){JSON.parse(raw);return true;}
       throw new Error('missing');
     }catch(e){
-      const key='keaV201_recoveryLog';
+      const key='keaRecoveryLogV300';
       let log=[];try{log=JSON.parse(localStorage.getItem(key)||'[]')}catch{}
       log=Array.isArray(log)?log:[];
       const entry={key:k,at:new Date().toISOString(),reason:e?.message||'primary snapshot invalid/missing',backupAvailable:localStorage.getItem(k+'__lastgood')!==null};
@@ -2311,8 +2233,8 @@ html,body{min-height:100%;}
     const arr=read(qKey(),[]);
     window.quotes=(Array.isArray(arr)?arr:[]).map(normalizeQuote);
   }
-  window.keaV201RecoveryStatus=function(){
-    let log=[];try{log=JSON.parse(localStorage.getItem('keaV201_recoveryLog')||'[]')}catch{}
+  window.keaRecoveryStatus=function(){
+    let log=[];try{log=JSON.parse(localStorage.getItem('keaRecoveryLogV300')||'[]')}catch{}
     return {count:Array.isArray(log)?log.length:0,recent:Array.isArray(log)?log.slice(0,20):[]};
   };
   window.loadUserQuotes=loadQuotesUnified;
@@ -2322,7 +2244,7 @@ html,body{min-height:100%;}
     const ok=write(qKey(),arr);
     if(!ok) throw new Error('Could not safely save Quotes. Nothing was committed.');
     // Persist the same unified Quote payload through the existing online bridge.
-    try{window.keaV201PersistSavedKey?.(qKey());}catch(e){console.warn('[Quote persistence]',e);}
+    try{window.keaPersistSavedKey?.(qKey());}catch(e){console.warn('[Quote persistence]',e);}
   };
 
 
@@ -2343,7 +2265,7 @@ html,body{min-height:100%;}
 
   function boot(){
     try{if(window.currentUser){loadQuotesUnified();window.dashboard?.();}}
-    catch(e){console.error('[V2.0.2 unified quote boot]',e);}
+    catch(e){console.error('[Karvan unified quote boot]',e);}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else setTimeout(boot,0);
 })();
@@ -2387,7 +2309,7 @@ html,body{min-height:100%;}
     const valid=window.keaV3ValidateQuote(window.q);
     if(!valid.valid){alert(valid.message);return;}
     if(typeof window.normalizeBooking==='function')window.normalizeBooking();
-    const hotelValid=typeof window.keaV201ValidateHotelBooking==='function'?window.keaV201ValidateHotelBooking():{valid:true};
+    const hotelValid=typeof window.keaValidateHotelBooking==='function'?window.keaValidateHotelBooking():{valid:true};
     if(!hotelValid.valid){alert(hotelValid.message||hotelValid.reason||'Please correct the hotel booking details before saving.');return;}
     const calc=window.keaV3Calculate(window.q);
     if(!['draft','confirmed','ongoing','completed','cancelled'].includes(String(window.q.status||'')))window.q.status='draft';
@@ -2433,14 +2355,32 @@ html,body{min-height:100%;}
 
 
 
+<script id="kea-mobile-navigation-runtime">
+(function(){
+  window.toggleMobileMenu=function(force){
+    const sidebar=document.querySelector('.modern-sidebar');
+    const backdrop=document.getElementById('mobileNavBackdrop');
+    const btn=document.getElementById('mobileMenuToggle');
+    if(!sidebar)return;
+    const open=typeof force==='boolean'?force:!sidebar.classList.contains('mobile-open');
+    sidebar.classList.toggle('mobile-open',open);
+    backdrop?.classList.toggle('open',open);
+    btn?.setAttribute('aria-expanded',String(open));
+    btn?.setAttribute('aria-label',open?'Close navigation':'Open navigation');
+  };
+  document.addEventListener('click',function(e){
+    if(e.target.closest('.modern-sidebar .navitem')) toggleMobileMenu(false);
+  });
+})();
+</script>
 <script id="kea-appearance-runtime">
 (function(){
   const APPEARANCE_KEYS={day:'keaThemeV1_day',night:'keaThemeV1_night'};
   const DEFAULTS={
     day:{background:'#F4F6FA',surface:'#FFFFFF',primary:'#0B1F3A',accent:'#C9962D',danger:'#D92D20'},
-    night:{background:'#0B1424',surface:'#101B2E',primary:'#0B1F3A',accent:'#C9962D',danger:'#FF6B5E'}
+    night:{background:'#07111F',surface:'#0F1B2D',primary:'#5E9CFF',accent:'#D8A83A',danger:'#FF6B5E'}
   };
-  const ROLE_LABELS={background:'Background',surface:'Surface (Cards)',primary:'Primary (Top Bar / Bottom Nav)',accent:'Accent (Gold highlights/buttons)',danger:'Danger (Delete/Unpaid indicators)'};
+  const ROLE_LABELS={background:'Background',surface:'Surface (Cards)',primary:'Primary (Header / Navigation)',accent:'Accent (Gold highlights/buttons)',danger:'Danger (Delete/Unpaid indicators)'};
   let appearanceMode=document.documentElement.getAttribute('data-theme')==='night'?'night':'day';
   let appearanceDraft={day:null,night:null};
   function hexToRgb(hex){const h=String(hex||'').replace('#','');if(!/^[0-9a-fA-F]{6}$/.test(h))return [0,0,0];return [parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
@@ -2452,7 +2392,7 @@ html,body{min-height:100%;}
   function applyAppearance(mode){
     const d=appearanceDraft[mode]||readMode(mode);appearanceDraft[mode]=clone(d);
     const root=document.documentElement;
-    root.style.setProperty('--bg',d.background);root.style.setProperty('--surface',d.surface);
+    root.style.setProperty('--bg',d.background);root.style.setProperty('--surface',d.surface);root.style.setProperty('--surface-2',mode==='night'?'color-mix(in srgb,'+d.surface+' 82%, #000 18%)':'color-mix(in srgb,'+d.surface+' 92%, #000 8%)');root.style.setProperty('--border',mode==='night'?'rgba(255,255,255,.14)':'#DFE4EC');
     root.style.setProperty('--color-navy',d.primary);root.style.setProperty('--color-gold',d.accent);root.style.setProperty('--danger',d.danger);
     root.style.setProperty('--text-primary',d.text.background);root.style.setProperty('--text-on-navy',d.text.primary);root.style.setProperty('--text-on-gold',d.text.accent);
     root.style.setProperty('--color-gold-light',d.accent);
@@ -2463,11 +2403,11 @@ html,body{min-height:100%;}
     if(!isSuperAdmin()||!$('appearanceEditor'))return;
     const d=appearanceDraft[appearanceMode]||readMode(appearanceMode);appearanceDraft[appearanceMode]=clone(d);
     document.getElementById('appearanceDayTab')?.classList.toggle('on',appearanceMode==='day');document.getElementById('appearanceNightTab')?.classList.toggle('on',appearanceMode==='night');
-    $('appearanceEditor').innerHTML=Object.keys(ROLE_LABELS).map(k=>`<div class="appearance-picker"><div><b>${ROLE_LABELS[k]}</b><div class="appearance-swatch" style="margin-top:5px"><i style="background:${d[k]}"></i><span>${d[k]} • Auto text: ${d.text?.[k]||bestTextColor(d[k])}</span></div></div><input type="color" value="${d[k]}" data-appearance-role="${k}" aria-label="${ROLE_LABELS[k]}" oninput="window.keaAppearanceColorChanged('${k}',this.value)"></div>`).join('')+`<div class="appearance-preview"><div class="preview-bar" style="background:${d.primary};color:${d.text.primary||bestTextColor(d.primary)}">Sample Top Bar / Bottom Nav</div><div class="preview-card" style="background:${d.surface};color:${d.text.surface||bestTextColor(d.surface)}">Sample Card<div class="preview-actions"><span class="btn" style="background:${d.primary};color:${d.text.primary||bestTextColor(d.primary)}">Primary</span><span class="btn" style="background:${d.accent};color:${d.text.accent||bestTextColor(d.accent)}">Gold</span></div></div></div><div class="appearance-actions"><button class="btn outline" type="button" onclick="window.keaResetAppearance('${appearanceMode}')">Reset to Default</button><button class="btn primary" type="button" onclick="window.keaSaveAppearance('${appearanceMode}')">Save Appearance</button></div>`;
+    $('appearanceEditor').innerHTML=Object.keys(ROLE_LABELS).map(k=>`<div class="appearance-picker"><div><b>${ROLE_LABELS[k]}</b><div class="appearance-swatch" style="margin-top:5px"><i style="background:${d[k]}"></i><span>${d[k]} • Auto text: ${d.text?.[k]||bestTextColor(d[k])}</span></div></div><input type="color" value="${d[k]}" data-appearance-role="${k}" aria-label="${ROLE_LABELS[k]}" oninput="window.keaAppearanceColorChanged('${k}',this.value)"></div>`).join('')+`<div class="appearance-preview"><div class="preview-bar" style="background:${d.primary};color:${d.text.primary||bestTextColor(d.primary)}">Sample Application Header</div><div class="preview-card" style="background:${d.surface};color:${d.text.surface||bestTextColor(d.surface)}">Sample Card<div class="preview-actions"><span class="btn" style="background:${d.primary};color:${d.text.primary||bestTextColor(d.primary)}">Primary</span><span class="btn" style="background:${d.accent};color:${d.text.accent||bestTextColor(d.accent)}">Gold</span></div></div></div><div class="appearance-actions"><button class="btn outline" type="button" onclick="window.keaResetAppearance('${appearanceMode}')">Reset to Default</button><button class="btn primary" type="button" onclick="window.keaSaveAppearance('${appearanceMode}')">Save Appearance</button></div>`;
   }
   window.keaAppearanceColorChanged=function(role,value){if(!appearanceDraft[appearanceMode])appearanceDraft[appearanceMode]=readMode(appearanceMode);const d=appearanceDraft[appearanceMode];d[role]=value;d.text=d.text||{};d.text[role]=bestTextColor(value);render();};
-  window.keaSaveAppearance=async function(mode){if(!isSuperAdmin())return alert('Only Super Admin can change Appearance.');const d=appearanceDraft[mode]||readMode(mode);const saved=withText(mode,d);localStorage.setItem(APPEARANCE_KEYS[mode],JSON.stringify(saved));appearanceDraft[mode]=clone(saved);applyAppearance(mode);render();if(typeof window.upsertConfig==='function'){const ok=await window.upsertConfig(mode==='night'?'appearance_night':'appearance_day',saved);if(!ok&&window.keaV201QueueWrite)window.keaV201QueueWrite('config',APPEARANCE_KEYS[mode]);}};
-  window.keaResetAppearance=async function(mode){if(!isSuperAdmin())return alert('Only Super Admin can reset Appearance.');appearanceDraft[mode]=clone(DEFAULTS[mode]);appearanceDraft[mode].text=withText(mode,appearanceDraft[mode]).text;localStorage.setItem(APPEARANCE_KEYS[mode],JSON.stringify(appearanceDraft[mode]));applyAppearance(mode);render();if(typeof window.upsertConfig==='function'){const ok=await window.upsertConfig(mode==='night'?'appearance_night':'appearance_day',appearanceDraft[mode]);if(!ok&&window.keaV201QueueWrite)window.keaV201QueueWrite('config',APPEARANCE_KEYS[mode]);}};
+  window.keaSaveAppearance=async function(mode){if(!isSuperAdmin())return alert('Only Super Admin can change Appearance.');const d=appearanceDraft[mode]||readMode(mode);const saved=withText(mode,d);localStorage.setItem(APPEARANCE_KEYS[mode],JSON.stringify(saved));appearanceDraft[mode]=clone(saved);applyAppearance(mode);render();if(typeof window.upsertConfig==='function'){const ok=await window.upsertConfig(mode==='night'?'appearance_night':'appearance_day',saved);if(!ok&&window.keaQueueWrite)window.keaQueueWrite('config',APPEARANCE_KEYS[mode]);}};
+  window.keaResetAppearance=async function(mode){if(!isSuperAdmin())return alert('Only Super Admin can reset Appearance.');appearanceDraft[mode]=clone(DEFAULTS[mode]);appearanceDraft[mode].text=withText(mode,appearanceDraft[mode]).text;localStorage.setItem(APPEARANCE_KEYS[mode],JSON.stringify(appearanceDraft[mode]));applyAppearance(mode);render();if(typeof window.upsertConfig==='function'){const ok=await window.upsertConfig(mode==='night'?'appearance_night':'appearance_day',appearanceDraft[mode]);if(!ok&&window.keaQueueWrite)window.keaQueueWrite('config',APPEARANCE_KEYS[mode]);}};
   window.selectAppearanceMode=function(mode){appearanceMode=mode==='night'?'night':'day';if(!appearanceDraft[appearanceMode])appearanceDraft[appearanceMode]=readMode(appearanceMode);render();};
   window.renderAppearanceSettings=function(){appearanceMode=document.documentElement.getAttribute('data-theme')==='night'?'night':'day';if(!appearanceDraft[appearanceMode])appearanceDraft[appearanceMode]=readMode(appearanceMode);render();};
   window.applySavedAppearance=function(mode){appearanceMode=mode==='night'?'night':'day';appearanceDraft[appearanceMode]=readMode(appearanceMode);applyAppearance(appearanceMode);};
