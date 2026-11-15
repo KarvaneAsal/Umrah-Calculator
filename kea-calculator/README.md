@@ -31,15 +31,20 @@ Do not use the older Supabase project or import old customer/booking data.
 
 Open `index.html` in a modern browser. PDF/JPG downloads use browser-native download. External PDF/image rendering libraries are loaded from CDN, so an internet connection is required for those exports.
 
-## Planned Cloudflare Pages deployment
+## Free GitHub Pages deployment
 
-- Repository: `KarvaneAsal/Umrah-Calculator`
-- Production branch: `kea-calculator-isolated`
-- Root directory: `kea-calculator`
-- Build command: none
-- Output directory: `.`
+A GitHub Actions workflow is included at `.github/workflows/deploy-umrah-calculator.yml`. It builds the static site from this folder whenever this branch is updated.
 
-The public Pages subdomain and custom domain must be configured in Cloudflare. A custom `.com` domain must be registered separately and may have an annual fee.
+One-time owner setup:
+1. Open the repository Settings.
+2. Open Pages.
+3. Under Build and deployment, set Source to **GitHub Actions**.
+4. Open the Actions tab and check the workflow run for this branch.
+
+After a successful deployment, the free URL will be:
+`https://karvaneasal.github.io/Umrah-Calculator/`
+
+This uses GitHub Pages on the public repository. No paid domain or hosting subscription is required. The URL is controlled by GitHub; it cannot be renamed to a custom `.com` address without owning that domain.
 
 ## Security
 
