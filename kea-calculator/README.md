@@ -31,20 +31,13 @@ Do not use the older Supabase project or import old customer/booking data.
 
 Open `index.html` in a modern browser. PDF/JPG downloads use browser-native download. External PDF/image rendering libraries are loaded from CDN, so an internet connection is required for those exports.
 
-## Free GitHub Pages deployment
+## Free hosting plan
 
-A GitHub Actions workflow is included at `.github/workflows/deploy-umrah-calculator.yml`. It builds the static site from this folder whenever this branch is updated.
+Use Cloudflare Pages Free for static hosting, with a free `*.pages.dev` address. Suggested project name: `umrahcalculator`, giving the proposed address `https://umrahcalculator.pages.dev` if available.
 
-One-time owner setup:
-1. Open the repository Settings.
-2. Open Pages.
-3. Under Build and deployment, set Source to **GitHub Actions**.
-4. Open the Actions tab and check the workflow run for this branch.
+Cloudflare Pages can connect to this repository and deploy the `kea-calculator` directory. No paid domain is required. The Cloudflare account owner must complete the initial connection and authorize the GitHub repository.
 
-After a successful deployment, the free URL will be:
-`https://karvaneasal.github.io/Umrah-Calculator/`
-
-This uses GitHub Pages on the public repository. No paid domain or hosting subscription is required. The URL is controlled by GitHub; it cannot be renamed to a custom `.com` address without owning that domain.
+The old GitHub Pages workflow was intentionally removed: GitHub Pages' published usage policy says it is not intended for websites primarily facilitating commercial transactions or commercial SaaS.
 
 ## Security
 
